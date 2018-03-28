@@ -46,5 +46,5 @@ query {
 `;
 
 export default withRouter(
-  connect()(graphql(QUERY, {name: 'getUsers'})(UserListPage))
+  graphql(QUERY, {name: 'getUsers'})(UserListPage)
 );
