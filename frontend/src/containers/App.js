@@ -13,7 +13,7 @@ const App = props => {
       <Switch>
         <Route exact path="/" component={UserPage} />
         <PrivateRoute exact path="/" component={UserPage} />
-	    <PrivateRoute path="/add-user" component={UserPage} /> 
+	      <PrivateRoute path="/add-user" component={UserPage} /> 
         <PrivateRoute path="/users" component={UserListPage} />
       </Switch>
     </div>

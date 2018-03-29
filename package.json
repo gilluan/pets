@@ -1,0 +1,20 @@
+{
+  "name": "pets",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npm cd graphql && npm install && npm start | cd frontend && yarn install && yarn start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gilluan/pets.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gilluan/pets/issues"
+  },
+  "homepage": "https://github.com/gilluan/pets#readme"
+}
