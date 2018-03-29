@@ -5,27 +5,7 @@ import DateTime from './scalars/DateTime';
 
 const typeDefs = `
   scalar DateTimeScalar
-
-  type Query {
-    getUser(id: String): User
-    getUsers: [User!]!
-  }
-
-  type Mutation {
-    signup(email: String!, password: String!, name: String!): AuthPayload
-    login(email: String!, password: String!): AuthPayload
-    createUser(
-      email: String!,
-      password: String!,
-      name: String!,
-      cpf: String,
-      sexo: String,
-      rg: String,
-      telefones: [String!],
-      birthDate: DateTimeScalar
-    ): User
-  }
-
+  
   type User {
     id: ID
     email: String
@@ -37,10 +17,62 @@ const typeDefs = `
     telefones: [String!]
   }
 
+  type Endereco {
+    logradouro: String
+    complemento: String
+    cidade: String
+    bairro: String
+    uf: String
+    cep: String
+  }
 
   type AuthPayload {
     token: String
     user: User
+  }
+
+  type Query {
+    getUser(id: String): User
+    getUsers: [User!]!
+  }
+
+  type Mutation {
+    signup(
+      email: String!, 
+      password: String!, 
+      name: String!): AuthPayload
+    
+    login(
+      email: String!, 
+      password: String!
+    ): AuthPayload
+    
+    createUser(
+      email: String!,
+      password: String!,
+      name: String!,
+      cpf: String,
+      sexo: String,
+      rg: String,
+      telefones: [String!],
+      birthDate: DateTimeScalar
+    ): User
+    
+    editUser(
+      id: ID,
+      email: String!,
+      password: String!,
+      name: String!,
+      cpf: String,
+      sexo: String,
+      rg: String,
+      telefones: [String!],
+      birthDate: DateTimeScalar
+    ): User
+    
+    removeUser(
+      id: ID
+    ): String
   }
 `;
 

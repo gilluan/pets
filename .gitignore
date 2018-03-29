@@ -22,3 +22,5 @@ yarn-debug.log*
 yarn-error.log*
 
 frontend/react/node_modules/
+graphql/.idea/
+
