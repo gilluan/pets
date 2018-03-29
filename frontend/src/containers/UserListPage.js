@@ -9,12 +9,12 @@ import { withRouter } from 'react-router-dom'
 class UserListPage extends React.Component {
 
   componentDidMount() {
-    let getUsers = async () => {
-      let { data: {getUsers: {users} } } = await this.props.getUsers();
-      this.props.users = users;
-    };
+    // let getUsers = async () => {
+    //   let { data: {getUsers: {users} } } = await this.props.getUsers();
+    //   this.props.users = users;
+    // };
 
-    getUsers();
+    // getUsers();
   }
 
   render() {
@@ -25,8 +25,9 @@ class UserListPage extends React.Component {
           style={{ height: '100%' }}
           verticalAlign='middle'
         >
+        <h1>Teste</h1>
           <Grid.Column style={{maxWidth: 450}}>
-            <UserList {...this.props} />
+            <UserList {...this.props} users={[]} />
           </Grid.Column>
         </Grid>
       </div>

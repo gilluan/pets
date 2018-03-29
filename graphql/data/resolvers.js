@@ -8,9 +8,9 @@ const resolvers = {
         getUser:  isAuthenticatedResolver.createResolver(async (parent, {id}, context, info) => {
             return await User.findById(id);
         }),
-        getUsers: isAuthenticatedResolver.createResolver(async (parent, args, context, info) => {
+        getUsers: async (parent, args, context, info) => {
             return await User.find();
-        })
+        }
     },
     Mutation: {
          async createUser(parent, args, context, info) {
