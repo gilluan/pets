@@ -1,25 +1,24 @@
 import React from 'react';
-import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom'
-import UserForm from '../components/UserForm';
-import { saveUser } from '../actions/user';
+import UserForm from '../components/user/UserForm';
 import { ApolloClient } from 'apollo-client';
-import { graphql, compose } from 'react-apollo'
+import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
+import { Grid } from 'semantic-ui-react';
 
-const UserPage = ({save, lista, listUsers, myQ}) => (
-  <div>
-    <h1>The User Form</h1>
-    <UserForm save={save}/>
+const UserPage = props => (
+  <div className="addUserForm">
+    <Grid
+      textAlign='center'
+      style={{ height: '100%' }}
+      verticalAlign='middle'
+    >
+      <Grid.Column style={{ maxWidth: 450 }}>
+        <UserForm {...props} />
+      </Grid.Column>
+    </Grid>
   </div>
+
 );
 
-const QUERY =  gql`
-    query {
-      getUsers {
-        id
-      }
-}`;
-
-
-export default UserPage;
+export default withRouter(UserPage);
