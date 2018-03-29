@@ -1,0 +1,1 @@
+(cd graphql && npm install && npm start &); (cd frontend && yarn install && yarn start &)
