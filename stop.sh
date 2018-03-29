@@ -11,4 +11,3 @@ do
 	echo 'Eliminando processo Node ' $pid
 	kill -9 $pid
 done
-
