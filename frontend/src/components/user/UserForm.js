@@ -63,9 +63,9 @@ const UserForm = withFormik({
     name: Yup.string().required('Name is required!'),
     cpf: Yup.string().required('CPF is required')
   }),
-  handleSubmit: async (values, { props }) => {
-    console.log('USSER', values)
+  handleSubmit: async (values, { props, resetForm }) => {
     props.createUser({variables: {...values}});
+    resetForm()
   },
 })(InnerForm);
 

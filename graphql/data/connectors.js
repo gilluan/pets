@@ -11,6 +11,7 @@ const UserSchema = Mongoose.Schema({
     name: String,
     email: String,
     password: String,
+    cpf: String,
     sexo: String,
     birthDate: Date,
     rg: String,

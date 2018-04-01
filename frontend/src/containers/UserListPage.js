@@ -9,7 +9,7 @@ import { Query, Mutation } from 'react-apollo'
 import FormikInput from '../shared/FormikInput'
 import { withFormik } from 'formik'
 import Yup from 'yup'
-import { Button } from 'semantic-ui-react'
+import { Button, Table} from 'semantic-ui-react'
 import FormikForm from '../shared/FormikForm'
 import UserForm from '../components/user/UserForm';
 
@@ -18,27 +18,47 @@ const QUERY_LIST_USERS = gql`
     getUsers {
       name
       id
+      email
+      cpf
     }
   }
 `;
 
+const ListRow = ({item}) => (
+      <Table.Row key={item.id}>
+        <Table.Cell>{item.name}</Table.Cell>
+        <Table.Cell>{item.cpf || ''}</Table.Cell>
+        <Table.Cell>{item.email || ''}</Table.Cell>
+      </Table.Row>
+)
+
 const ListUsers = () => (
-    <Query query={QUERY_LIST_USERS}>
-        {(obj) => {
-          let { loading, error, data} = obj
-            if (loading) return "Loading..."
-            if (error) return `Error! ${error.message}`
-            return (
-                <div>
-                {data && data.getUsers && data.getUsers.map(item => (
-                    <option key={item.id} value={item.name}>
-                    {item.name}
-                    </option>
-                ))}
-                </div>
-            );
-        }}
-    </Query>
+
+  <Table celled compact definition>
+    <Table.Header fullWidth>
+      <Table.Row>
+        <Table.HeaderCell>Name</Table.HeaderCell>
+        <Table.HeaderCell>Cpf</Table.HeaderCell>
+        <Table.HeaderCell>E-mail address</Table.HeaderCell>
+      </Table.Row>
+    </Table.Header>
+
+        <Query query={QUERY_LIST_USERS}>
+            {(obj) => {
+              let { loading, error, data} = obj
+                if (loading) return "Loading..."
+                if (error) return `Error! ${error.message}`
+                return (
+                  <Table.Body>    
+                    {data.getUsers.map(item => (
+                      <ListRow item={item} />
+                    ))}
+                  </Table.Body>                  
+                );
+            }}
+        </Query>
+      
+    </Table>
 )
 
 const SAVE_USER = gql`
