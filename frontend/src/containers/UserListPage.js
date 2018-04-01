@@ -25,12 +25,12 @@ const QUERY_LIST_USERS = gql`
 const ListUsers = () => (
     <Query query={QUERY_LIST_USERS}>
         {(obj) => {
-          let { loading, error, cliente} = obj;
+          let { loading, error, data} = obj
             if (loading) return "Loading..."
             if (error) return `Error! ${error.message}`
             return (
                 <div>
-                {obj.data.getUsers.map(item => (
+                {data && data.getUsers && data.getUsers.map(item => (
                     <option key={item.id} value={item.name}>
                     {item.name}
                     </option>
@@ -52,15 +52,22 @@ const SAVE_USER = gql`
     ){
       createUser(email: $email, password: $password, name: $name, cpf: $cpf, sexo: $sexo, rg: $rg){
         id
+        email
+        password
+        name
+        cpf
+        rg
+        sexo
+        telefones
       }
     }
 `
 
 const updateUsersList = (cache, { data: { createUser } }) => {
-    const { getUsers } = cache.readQuery({ query: QUERY_LIST_USERS });
+    const { getUsers } = cache.readQuery({ query: QUERY_LIST_USERS }) || [];
     cache.writeQuery({
       query: QUERY_LIST_USERS,
-      getUsers: [...getUsers, createUser] 
+      data: {getUsers: [...getUsers, createUser] }
     });
 }
 
@@ -73,9 +80,7 @@ class UserListPage extends React.Component {
         <Mutation 
             mutation={SAVE_USER}
             update={updateUsersList}>
-                {(createUser => {
-                    return <UserForm createUser={createUser}/>
-                })}
+                {(createUser => (<UserForm createUser={createUser}/>))}
         </Mutation>
         <h2>Lista de Usuarios</h2>
         <ListUsers />
