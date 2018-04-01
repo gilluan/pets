@@ -23,7 +23,15 @@ const QUERY_LIST_USERS = gql`
   }
 `;
 
-const ListRow = ({data}) => (
+const ItemTable = ({item}) => (
+  <Table.Row>
+          <Table.Cell>{item.name}</Table.Cell>
+          <Table.Cell>{item.cpf || ''}</Table.Cell>
+          <Table.Cell>{item.email || ''}</Table.Cell>
+</Table.Row>
+)
+
+const UserTable = ({data}) => (
       <Table striped>
       <Table.Header fullWidth>
         <Table.Row>
@@ -32,34 +40,22 @@ const ListRow = ({data}) => (
           <Table.HeaderCell>E-mail address</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
-
       <Table.Body>   
-        {data.map(item => (
-          <Table.Row key={item.id}>
-          <Table.Cell>{item.name}</Table.Cell>
-          <Table.Cell>{item.cpf || ''}</Table.Cell>
-          <Table.Cell>{item.email || ''}</Table.Cell>
-        </Table.Row>
-                      ))}
+        {data.map(item => (<ItemTable key={item.id} item={item} />))}
       </Table.Body>   
-
     </Table>
 )
 
 const ListUsers = () => (
-  <div>
   <Query query={QUERY_LIST_USERS}>
-  {(obj) => {
-    let { loading, error, data} = obj
-      if (loading) return "Loading..."
-      if (error) return `Error! ${error.message}`
-      return (<ListRow data={data.getUsers} />);
+    {(obj) => {
+      let { loading, error, data} = obj
+        if (loading) return "Loading..."
+        if (error) return `Error! ${error.message}`
+        return (<UserTable data={data.getUsers} />);
+      }
     }
-  }
-          
-
-      </Query>
-    </div>
+  </Query>
 )
 
 const SAVE_USER = gql`
