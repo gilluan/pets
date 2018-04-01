@@ -34,7 +34,7 @@ const ListRow = ({item}) => (
 
 const ListUsers = () => (
 
-  <Table celled compact definition>
+  <Table striped>
     <Table.Header fullWidth>
       <Table.Row>
         <Table.HeaderCell>Name</Table.HeaderCell>
