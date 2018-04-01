@@ -2,14 +2,13 @@ import React from 'react'
 import UserList from '../components/user/UserList'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
-import { Grid } from 'semantic-ui-react'
 import { connect } from "react-redux"
 import { withRouter } from 'react-router-dom'
 import { Query, Mutation } from 'react-apollo'
 import FormikInput from '../shared/FormikInput'
 import { withFormik } from 'formik'
 import Yup from 'yup'
-import { Button, Table} from 'semantic-ui-react'
+import { Button, Table, Grid, Pagination} from 'semantic-ui-react'
 import FormikForm from '../shared/FormikForm'
 import UserForm from '../components/user/UserForm';
 
@@ -33,7 +32,7 @@ const ListRow = ({item}) => (
 )
 
 const ListUsers = () => (
-
+  <div>
   <Table striped>
     <Table.Header fullWidth>
       <Table.Row>
@@ -59,6 +58,8 @@ const ListUsers = () => (
         </Query>
       
     </Table>
+    <Pagination defaultActivePage={1} totalPages={2} />
+    </div>
 )
 
 const SAVE_USER = gql`
