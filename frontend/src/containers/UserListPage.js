@@ -23,42 +23,42 @@ const QUERY_LIST_USERS = gql`
   }
 `;
 
-const ListRow = ({item}) => (
-      <Table.Row key={item.id}>
-        <Table.Cell>{item.name}</Table.Cell>
-        <Table.Cell>{item.cpf || ''}</Table.Cell>
-        <Table.Cell>{item.email || ''}</Table.Cell>
-      </Table.Row>
+const ListRow = ({data}) => (
+      <Table striped>
+      <Table.Header fullWidth>
+        <Table.Row>
+          <Table.HeaderCell>Name</Table.HeaderCell>
+          <Table.HeaderCell>Cpf</Table.HeaderCell>
+          <Table.HeaderCell>E-mail address</Table.HeaderCell>
+        </Table.Row>
+      </Table.Header>
+
+      <Table.Body>   
+        {data.map(item => (
+          <Table.Row key={item.id}>
+          <Table.Cell>{item.name}</Table.Cell>
+          <Table.Cell>{item.cpf || ''}</Table.Cell>
+          <Table.Cell>{item.email || ''}</Table.Cell>
+        </Table.Row>
+                      ))}
+      </Table.Body>   
+
+    </Table>
 )
 
 const ListUsers = () => (
   <div>
-  <Table striped>
-    <Table.Header fullWidth>
-      <Table.Row>
-        <Table.HeaderCell>Name</Table.HeaderCell>
-        <Table.HeaderCell>Cpf</Table.HeaderCell>
-        <Table.HeaderCell>E-mail address</Table.HeaderCell>
-      </Table.Row>
-    </Table.Header>
+  <Query query={QUERY_LIST_USERS}>
+  {(obj) => {
+    let { loading, error, data} = obj
+      if (loading) return "Loading..."
+      if (error) return `Error! ${error.message}`
+      return (<ListRow data={data.getUsers} />);
+    }
+  }
+          
 
-        <Query query={QUERY_LIST_USERS}>
-            {(obj) => {
-              let { loading, error, data} = obj
-                if (loading) return "Loading..."
-                if (error) return `Error! ${error.message}`
-                return (
-                  <Table.Body>    
-                    {data.getUsers.map(item => (
-                      <ListRow item={item} />
-                    ))}
-                  </Table.Body>                  
-                );
-            }}
-        </Query>
-      
-    </Table>
-    <Pagination defaultActivePage={1} totalPages={2} />
+      </Query>
     </div>
 )
 
