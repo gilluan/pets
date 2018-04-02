@@ -3,7 +3,7 @@ import { withFormik } from 'formik'
 import Yup from 'yup';
 import FormikInput from '../../shared/FormikInput';
 import FormikForm from '../../shared/FormikForm';
-import { Button } from 'semantic-ui-react'
+import { Button, Modal, Card } from 'semantic-ui-react'
 
 const options = [
   { key: "m", text: 'Male', value: 'male' },
@@ -12,7 +12,11 @@ const options = [
 
 const InnerForm = props =>  (
   <FormikForm onSubmit={props.handleSubmit}>
-    <FormikInput
+
+    <Card style={{width: '100%'}}>
+                <Card.Content header='Cadastro de Usuários' />
+                <Card.Content description='teste'>
+                   <FormikInput
       fluid
       placeholder='Email'
       name="email"
@@ -48,8 +52,15 @@ const InnerForm = props =>  (
         placeholder="Telefone"
         name="telefone"
       />
-    <Button type='submit'>Submit</Button>
+                   
+                </Card.Content>
+                <Card.Content extra>
+                  <Button positive icon='checkmark' labelPosition='right' content='Save' type='submit' />
+                </Card.Content>
+              </Card>
+    
   </FormikForm>
+  
 );
 
 const UserForm = withFormik({
@@ -64,7 +75,7 @@ const UserForm = withFormik({
     cpf: Yup.string().required('CPF is required')
   }),
   handleSubmit: async (values, { props, resetForm }) => {
-    props.createUser({variables: {...values}});
+    await props.createUser({variables: {...values}})
     resetForm()
   },
 })(InnerForm);

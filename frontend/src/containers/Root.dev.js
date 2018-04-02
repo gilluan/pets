@@ -15,7 +15,8 @@ const Root = () => {
   return (
     <Router>
       <div>
-          <Menu inverted>
+          <Menu fixed="top" inverted>
+            <Container>
             <Menu.Item name='home' active={false} onClick={this.handleItemClick} >
               <Link to="/login">Login</Link>
               </Menu.Item>
@@ -25,13 +26,14 @@ const Root = () => {
               <Menu.Item name='friends' active={false} onClick={this.handleItemClick}>
               <Link to="/pets">Pets</Link>
               </Menu.Item>
-            </Menu>
-              <Container>
-                <Switch>
-                  <Route path="/login" component={LoginPage} />
-                  <PrivateRoute path="/" component={App} />
-                </Switch>
               </Container>
+            </Menu>
+            <Container style={{marginTop: '7em'}}>
+              <Switch>
+                <Route path="/login" component={LoginPage} />
+                <PrivateRoute path="/" component={App} />
+              </Switch>
+            </Container>
         </div>
       </Router>
   );
