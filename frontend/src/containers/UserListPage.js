@@ -105,7 +105,7 @@ const ModalForm = ({open, size, onClose}) => (
               mutation={SAVE_USER}
               update={updateUsersList}> 
           {(createUser => (
-            <Modal size={size} open={open} onClose={onClose}>
+            <Modal size='medium' open={open} onClose={onClose}>
                <UserForm createUser={createUser}/>
             </Modal>
           ))}
