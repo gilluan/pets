@@ -1,0 +1,1 @@
+cd graphql && npm install && npm start &
