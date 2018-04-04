@@ -12,6 +12,7 @@ const typeDefs = `
     email: String
     name: String
     password: String
+    nascimento: String
     cpf: String
     sexo: String
     rg: String
@@ -23,6 +24,7 @@ const typeDefs = `
     email: String
     name: String
     password: String
+    nascimento: String
     cpf: String
     sexo: String
     rg: String
@@ -45,8 +47,8 @@ const typeDefs = `
     raca: String,
     sexo: String,
     peso: Float,
-    nascimento: DateTimeScalar,
-    criado: DateTimeScalar,
+    nascimento: String,
+    criado: String,
     ativo: Boolean,
     comportamento: [String],
     observacoes: String,
@@ -82,6 +84,7 @@ const typeDefs = `
       password: String!,
       name: String!,
       cpf: String,
+      nascimento: String
       sexo: String,
       rg: String,
       telefones: [String!],
@@ -93,6 +96,7 @@ const typeDefs = `
       email: String!,
       password: String!,
       name: String!,
+      nascimento: String
       cpf: String,
       sexo: String,
       rg: String,
@@ -111,8 +115,8 @@ const typeDefs = `
       raca: String,
       sexo: String,
       peso: Float,
-      nascimento: DateTimeScalar,
-      criado: DateTimeScalar,
+      nascimento: String,
+      criado: String,
       ativo: Boolean,
       comportamento: [String],
       observacoes: String,

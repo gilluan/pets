@@ -10,9 +10,9 @@ const resolvers = {
     getUser: async (parent, { id }, context, info) => {
       return await User.findById(id)
     },
-    getUsers: isAuthenticatedResolver.createResolver(async (parent, args, context, info) => {
+    getUsers: async (parent, args, context, info) => {
       return await User.find()
-    }),
+    },
 
         // ========== Queries Pets ========================================================================
 
@@ -22,10 +22,10 @@ const resolvers = {
     getPet: isAuthenticatedResolver.createResolver(async (parent, { id }, context, info) => {
       return await Pet.findById(id)
     }),
-    getPetsByUser: isAuthenticatedResolver.createResolver(async (parent, { user }, context, info) => {
-      return await Pet.find({ 'usuario._id': user._id })
-    })
-
+    getPetsByUser: async (parent, { id }, context, info) => {
+      return await Pet.find({ 'usuario._id': id })
+    }
+    // isAuthenticatedResolver.createResolver(
   },
   Mutation: {
 
@@ -50,9 +50,7 @@ const resolvers = {
 
         // ========== Mutations Users ========================================================================
     async createUser (parent, args, context, info) {
-      console.log(args)
       let user = await new User(args).save()
-      console.log('saved', user)
       return user
     },
     async editUser (parent, args, context, info) {
@@ -66,9 +64,8 @@ const resolvers = {
 
         // ========== Mutations Pets ========================================================================
     async createPet (parent, args, context, info) {
-      console.log(args)
+      args.criado = new Date().toString()
       let pet = await new Pet(args).save()
-      console.log('saved', pet)
       return pet
     },
     async editPet (parent, args, context, info) {

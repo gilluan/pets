@@ -1,36 +1,37 @@
-import express from 'express';
-import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
-import bodyParser from 'body-parser';
-import schema from './data/schema';
-import resolvers from './data/resolvers';
-import cors from 'cors';
-import jwt from 'jsonwebtoken';
+import express from 'express'
+import { graphqlExpress, graphiqlExpress } from 'apollo-server-express'
+import bodyParser from 'body-parser'
+import schema from './data/schema'
+import resolvers from './data/resolvers'
+import cors from 'cors'
+import jwt from 'jsonwebtoken'
+import morgan from 'morgan'
 
-const GRAPHQL_PORT = 4000;
+const GRAPHQL_PORT = 4000
 
-const SECRET_KEY = 'mySecretKey';
+const SECRET_KEY = 'mySecretKey'
 
-const graphQLServer = express();
+const graphQLServer = express()
 
 const addUser = async (req, res, next) => {
-  const authorization = req.headers.authorization;
-  
-  const token = authorization || "";
+  const authorization = req.headers.authorization
 
-  if(token) {
+  const token = authorization || ''
+
+  if (token) {
     try {
-      const user = await jwt.verify(token, SECRET_KEY);
-      req.user = user;
+      const user = await jwt.verify(token, SECRET_KEY)
+      req.user = user
     } catch (err) {
-      console.log(' Erro na verificacao do token', err);
+      console.log(' Erro na verificacao do token', err)
     }
   }
-  next();
-};
+  next()
+}
 
-graphQLServer.use(cors());
+graphQLServer.use(cors())
 
-graphQLServer.use(addUser);
+graphQLServer.use(addUser)
 
 graphQLServer.use(
   '/graphql',
@@ -39,15 +40,16 @@ graphQLServer.use(
     schema,
     context: {
       SECRET_KEY,
-      user: req.user,
-    },
-  })),
-);
+      user: req.user
+    }
+  }))
+)
+graphQLServer.use(morgan('dev'))
 
-graphQLServer.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
+graphQLServer.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }))
 
 graphQLServer.listen(GRAPHQL_PORT, () =>
   console.log(
     `GraphiQL is now running on http://localhost:${GRAPHQL_PORT}/graphiql`
   )
-);
+)
