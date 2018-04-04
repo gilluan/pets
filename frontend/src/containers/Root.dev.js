@@ -11,24 +11,17 @@ import { Container } from 'semantic-ui-react'
 import  PrivateRoute  from '../components/PrivateRoute';
 import { ConnectedRouter } from "react-router-redux";
 
+const _showMenu = () => {
+    return localStorage.getItem('userToken')
+}
 
 const Root = () => {
+
+  
   return (
     <Router>
       <div>
-          <Menu fixed="top" inverted>
-            <Container>
-            <Menu.Item name='home' active={false} onClick={this.handleItemClick} >
-              <Link to="/login">Login</Link>
-              </Menu.Item>
-              <Menu.Item name='messages' active={true} onClick={this.handleItemClick}>
-              <Link to="/users">Usuários</Link>
-              </Menu.Item>
-              <Menu.Item name='friends' active={false} onClick={this.handleItemClick}>
-              <Link to="/pets">Pets</Link>
-              </Menu.Item>
-              </Container>
-            </Menu>
+          
             <Container style={{marginTop: '7em'}}>
               <Switch>
                 <Route path="/login" component={LoginPage} />

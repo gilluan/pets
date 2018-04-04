@@ -50,7 +50,7 @@ const Form = withFormik({
     console.log(retorno);
     let { data: { login: { token } } } = retorno
     localStorage.setItem('userToken', token)
-    props.history.replace('/')
+    props.history.replace('/users')
   },
   displayName: 'LoginForm'
 })(InnerForm);

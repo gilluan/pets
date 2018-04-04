@@ -5,13 +5,28 @@ import UserPage from "./UserPage";
 import Switch from "react-router-dom/Switch";
 import { connect } from "react-redux";
 import PrivateRoute from '../components/PrivateRoute';
+import { Menu } from 'semantic-ui-react'
+import { Container } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 const App = props => {
   const { dispatch } = props;
   return (
     <div>
+      <Menu fixed="top" inverted>
+            <Container>
+            <Menu.Item name='home' active={false} onClick={this.handleItemClick} >
+              <Link to="/login">Login</Link>
+              </Menu.Item>
+              <Menu.Item name='messages' active={true} onClick={this.handleItemClick}>
+              <Link to="/users">Usuários</Link>
+              </Menu.Item>
+              <Menu.Item name='friends' active={false} onClick={this.handleItemClick}>
+              <Link to="/pets">Pets</Link>
+              </Menu.Item>
+              </Container>
+            </Menu>
       <Switch>
-	      <PrivateRoute path="/add-user" component={UserPage} /> 
         <PrivateRoute path="/users" component={UserListPage} />
       </Switch>
     </div>
