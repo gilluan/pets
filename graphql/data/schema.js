@@ -18,6 +18,17 @@ const typeDefs = `
     telefones: [String!]
   }
 
+  input UserInput {
+    id: ID
+    email: String
+    name: String
+    password: String
+    cpf: String
+    sexo: String
+    rg: String
+    telefones: [String!]
+  }
+
   type Endereco {
     logradouro: String
     complemento: String
@@ -92,6 +103,37 @@ const typeDefs = `
     removeUser(
       id: ID
     ): String
+
+    createPet(
+      nome: String!,
+      especie: String,
+      cor: String,
+      raca: String,
+      sexo: String,
+      peso: Float,
+      nascimento: DateTimeScalar,
+      criado: DateTimeScalar,
+      ativo: Boolean,
+      comportamento: [String],
+      observacoes: String,
+      usuario: UserInput!
+    ): Pet
+    
+    editPet(
+      id: ID
+      nome: String,
+      cor: String,
+      sexo: String,
+      peso: Float,
+      ativo: Boolean,
+      comportamento: [String],
+      observacoes: String,
+      usuario: UserInput
+    ): Pet
+    
+    removePet(
+      id: ID
+    ): String    
   }
 `
 

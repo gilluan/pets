@@ -1,0 +1,50 @@
+
+mutation{
+  createPet (
+    nome: "Pet teste 1"
+    especie: "Cão"
+    cor: "Preto"
+    sexo: "Indefinido"
+    peso: 1.2
+    observacoes: "Obs teste"
+    usuario:  {
+        id: "5ac50f46691da66eabede49b",
+        email: "teste1@teste.com",
+        password: "123456",
+        name: "Teste 1",
+        cpf: "01234567890",
+        sexo: "Indefinido",
+        rg: "12345678",
+        telefones: [
+            "12345678"
+        ]
+    }
+) {
+    nome
+    especie
+    cor
+    raca
+    sexo
+    peso
+    nascimento
+    criado
+    ativo
+    observacoes
+  }
+}
+
+
+
+
+{ // USER
+    "_id" : ObjectId("5ac50f46691da66eabede49b")
+    "name": "Teste 1",
+    "email": "teste1@teste.com",
+    "password": "123456",
+    "cpf": "01234567890",
+    "sexo": "Indefinido",
+    "rg": "12345678",
+    "telefones": [
+        "12345678"
+    ]
+}
