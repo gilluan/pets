@@ -105,7 +105,7 @@ const ModalForm = ({open, size, onClose}) => (
               mutation={SAVE_USER}
               update={updateUsersList}> 
           {(createUser => (
-            <Modal size='medium' open={open} onClose={onClose}>
+            <Modal size='small' open={open} onClose={onClose}>
                <UserForm createUser={createUser}/>
             </Modal>
           ))}
@@ -125,14 +125,13 @@ class UserListPage extends React.Component {
     const { open, size } = this.state
     return (
       <span>        
-        <h2>Lista de Usuarios</h2>
+        {/*Adicionar o filtro*/}
+        {/*<h2>Lista de Usuarios</h2>*/}
         <ListUsers openAddUser={(size) => this.show(size)}/>
         <ModalForm open={open} size={size} onClose={this.close}/>
       </span>
     );
   }
 }
-
-
 
 export default withRouter(UserListPage);

@@ -3,6 +3,7 @@ import { Button, Form, Grid, Header, Message } from 'semantic-ui-react'
 import LoginForm from '../components/login/LoginForm';
 import { withRouter } from "react-router-dom";
 import { loginUserRequest, loginUserResponse } from "../actions/index";
+import { Link } from "react-router-dom"
 //import { graphql, compose } from 'react-apollo'
 
 
@@ -15,11 +16,11 @@ const LoginPage = props => (
         >
           <Grid.Column style={{ maxWidth: 450 }}>
             <Header as='h2' color='teal' textAlign='center'>
-              Log-in to your account
+              Login
             </Header>
             <LoginForm {...props} />
             <Message>
-              New to us? <a href=''>Sign Up</a>
+              Você é novo por aqui?  <Link to="/sign-up">Cadastre-se</Link>
             </Message>
           </Grid.Column>
         </Grid>

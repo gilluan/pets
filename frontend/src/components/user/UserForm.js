@@ -14,7 +14,7 @@ const InnerForm = props =>  (
   <FormikForm onSubmit={props.handleSubmit}>
 
     <Card style={{width: '100%'}}>
-                <Card.Content header='Cadastro de Usuários' />
+                <Card.Content header='Cadastro de Usuário' />
                 <Card.Content description='teste'>
                    <FormikInput
       fluid
@@ -32,6 +32,7 @@ const InnerForm = props =>  (
       placeholder="Name"
       name="name"
     />
+    
     <FormikInput
       fluid
       placeholder="CPF"
