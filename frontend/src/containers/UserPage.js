@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 import { withRouter } from 'react-router-dom'
-import UserForm from '../components/user/UserForm';
-import { ApolloClient } from 'apollo-client';
+import UserForm from '../components/user/UserForm'
+import { ApolloClient } from 'apollo-client'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import { Grid } from 'semantic-ui-react'
@@ -35,7 +35,7 @@ const redirectLogin = (props) => {
 
 
 const UserPage = props => (
-  <div className="addUserForm">
+  <div className='addUserForm'>
     <Grid
       textAlign='center'
       style={{ height: '100%' }}
@@ -53,6 +53,6 @@ const UserPage = props => (
     </Grid>
   </div>
 
-);
+)
 
-export default withRouter(UserPage);
+export default withRouter(UserPage)

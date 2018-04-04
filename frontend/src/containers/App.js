@@ -10,7 +10,7 @@ import { Container } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 const App = props => {
-  const { dispatch } = props;
+  const { dispatch } = props
   return (
     <div>
       <Menu fixed="top" inverted>
@@ -30,7 +30,7 @@ const App = props => {
         <PrivateRoute path="/users" component={UserListPage} />
       </Switch>
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App

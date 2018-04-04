@@ -8,8 +8,8 @@ import LoginPage from './LoginPage';
 import UserPage from './UserPage';
 import { Menu } from 'semantic-ui-react'
 import { Container } from 'semantic-ui-react'
-import  PrivateRoute  from '../components/PrivateRoute';
-import { ConnectedRouter } from "react-router-redux";
+import PrivateRoute from '../components/PrivateRoute'
+import { ConnectedRouter } from 'react-router-redux'
 
 const _showMenu = () => {
     return localStorage.getItem('userToken')

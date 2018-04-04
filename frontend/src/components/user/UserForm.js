@@ -1,16 +1,16 @@
 import React from 'react'
 import { withFormik } from 'formik'
-import Yup from 'yup';
-import FormikInput from '../../shared/FormikInput';
-import FormikForm from '../../shared/FormikForm';
+import Yup from 'yup'
+import FormikInput from '../../shared/FormikInput'
+import FormikForm from '../../shared/FormikForm'
 import { Button, Modal, Card } from 'semantic-ui-react'
 
 const options = [
-  { key: "m", text: 'Male', value: 'male' },
-  { key: "f", text: 'Female', value: 'female' },
-];
+  { key: 'm', text: 'Male', value: 'male' },
+  { key: 'f', text: 'Female', value: 'female' }
+]
 
-const InnerForm = props =>  (
+const InnerForm = props => (
   <FormikForm onSubmit={props.handleSubmit}>
 
     <Card style={{width: '100%'}}>
@@ -21,16 +21,16 @@ const InnerForm = props =>  (
       placeholder='Email'
       name="email"
      />
-    <FormikInput
-      fluid
-      placeholder='Password'
-      type="password"
-      name="password"
+        <FormikInput
+          fluid
+          placeholder='Password'
+          type='password'
+          name='password'
      />
-     <FormikInput
-      fluid
-      placeholder="Name"
-      name="name"
+        <FormikInput
+          fluid
+          placeholder='Name'
+          name='name'
     />
 
     {!props.signup && 
@@ -40,15 +40,15 @@ const InnerForm = props =>  (
       placeholder="CPF"
       name="cpf"
       />
-    <FormikInput
-      fluid
-      placeholder="RG"
-      name="rg"
+        <FormikInput
+          fluid
+          placeholder='RG'
+          name='rg'
       />
-    <FormikInput
-        fluid
-        placeholder="Sexo"
-        name="sexo"
+        <FormikInput
+          fluid
+          placeholder='Sexo'
+          name='sexo'
       />
       <FormikInput
         fluid
@@ -65,8 +65,8 @@ const InnerForm = props =>  (
               </Card>
     
   </FormikForm>
-  
-);
+
+)
 
 const UserForm = withFormik({
   mapPropsToValues: props => ({email: '', password: '', name: '', cpf: '', rg: '', sexo: '', telefone: ''}),
@@ -82,7 +82,7 @@ const UserForm = withFormik({
   handleSubmit: async (values, { props, resetForm }) => {
     await props.createUser({variables: {...values}})
     resetForm()
-  },
-})(InnerForm);
+  }
+})(InnerForm)
 
-export default UserForm;
+export default UserForm
