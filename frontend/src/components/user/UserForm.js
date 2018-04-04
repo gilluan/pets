@@ -16,7 +16,7 @@ const InnerForm = props =>  (
     <Card style={{width: '100%'}}>
                 <Card.Content header='Cadastro de Usuário' />
                 <Card.Content description='teste'>
-                   <FormikInput
+    <FormikInput
       fluid
       placeholder='Email'
       name="email"
@@ -32,8 +32,10 @@ const InnerForm = props =>  (
       placeholder="Name"
       name="name"
     />
-    
-    <FormikInput
+
+    {!props.signup && 
+    (<span>
+      <FormikInput
       fluid
       placeholder="CPF"
       name="cpf"
@@ -52,7 +54,9 @@ const InnerForm = props =>  (
         fluid
         placeholder="Telefone"
         name="telefone"
-      />
+      /></span>)
+    }
+    
                    
                 </Card.Content>
                 <Card.Content extra>
@@ -73,7 +77,7 @@ const UserForm = withFormik({
       .email('Invalid email address')
       .required('Email is required!'),
     name: Yup.string().required('Name is required!'),
-    cpf: Yup.string().required('CPF is required')
+    // cpf: !props.signup ? Yup.string().required('CPF is required') : Yup.string()
   }),
   handleSubmit: async (values, { props, resetForm }) => {
     await props.createUser({variables: {...values}})
