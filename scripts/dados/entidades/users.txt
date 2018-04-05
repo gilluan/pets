@@ -32,6 +32,22 @@ mutation{
   }
 }
 
+query{
+  getUsers {
+    id
+    name
+    email
+  }
+}
+
+mutation{
+    editUser(
+        id : "5ac50f46691da66eabede49b",
+        name : "Teste Edit"
+    )
+}
+
+
 // ========= Teste 2 ========= ========= ========= ========= 
 
 JSON

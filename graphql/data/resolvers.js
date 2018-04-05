@@ -5,7 +5,7 @@ import { isAuthenticatedResolver } from './authenticatedResolver'
 
 const resolvers = {
   Query: {
-        // ========== Queries User ========================================================================
+    // ========== Queries User ========================================================================
 
     getUser: async (parent, { id }, context, info) => {
       return await User.findById(id)
@@ -14,7 +14,7 @@ const resolvers = {
       return await User.find()
     },
 
-        // ========== Queries Pets ========================================================================
+    // ========== Queries Pets ========================================================================
 
     getPets: async (parent, args, context, info) => {
       return await Pet.find()
@@ -29,7 +29,7 @@ const resolvers = {
   },
   Mutation: {
 
-        // ========== Mutations Login ========================================================================
+    // ========== Mutations Login ========================================================================
 
     async signup (parent, args, { SECRET_KEY }, info) {
       const password = await bcrypt.hash(args.password, 10)
@@ -48,13 +48,17 @@ const resolvers = {
       return { token, user }
     },
 
-        // ========== Mutations Users ========================================================================
+    // ========== Mutations Users ========================================================================
     async createUser (parent, args, context, info) {
       let user = await new User(args).save()
       return user
     },
     async editUser (parent, args, context, info) {
-      let user = await User.findOneAndUpdate({ _id: args.id }, args)
+      console.log(JSON.stringify(args))
+      let user = await User.findOneAndUpdate({ _id: args.id }, args,
+        (err) => {
+          console.log(err)
+        })
       return { user }
     },
     async removeUser (parent, args, context, info) {
@@ -62,7 +66,7 @@ const resolvers = {
       return { message: 'removed' }
     },
 
-        // ========== Mutations Pets ========================================================================
+    // ========== Mutations Pets ========================================================================
     async createPet (parent, args, context, info) {
       args.criado = new Date().toString()
       let pet = await new Pet(args).save()

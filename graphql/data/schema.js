@@ -89,7 +89,7 @@ const typeDefs = `
       sexo: String,
       rg: String,
       telefones: [String!],
-      birthDate: DateTimeScalar
+      birthDate: String
     ): User
     
     editUser(
@@ -102,7 +102,7 @@ const typeDefs = `
       sexo: String,
       rg: String,
       telefones: [String!],
-      birthDate: DateTimeScalar
+      birthDate: String
     ): User
     
     removeUser(
