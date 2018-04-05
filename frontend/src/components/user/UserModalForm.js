@@ -1,8 +1,9 @@
 import React from 'react'
 import { Mutation } from 'react-apollo';
 import UserForm from './UserForm';
-import { QUERY_LIST_USERS, SAVE_USER } from '/.UserQueries'
+
 import { Modal } from 'semantic-ui-react';
+import { QUERY_LIST_USERS, SAVE_USER } from '/.UserQueries';
 
 
 const updateUsersList = (cache, { data: { createUser } }) => {
