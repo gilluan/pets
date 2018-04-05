@@ -7,7 +7,8 @@ import { connect } from "react-redux";
 import PrivateRoute from '../components/PrivateRoute';
 import { Menu } from 'semantic-ui-react'
 import { Container } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import PetPage from './PetPage';
 
 const App = props => {
   const { dispatch } = props
@@ -28,6 +29,7 @@ const App = props => {
             </Menu>
       <Switch>
         <PrivateRoute path="/users" component={UserListPage} />
+        <PrivateRoute path="/pets" component={PetPage} />
       </Switch>
     </div>
   )

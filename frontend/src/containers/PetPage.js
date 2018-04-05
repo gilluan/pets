@@ -1,7 +1,11 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import PetForm from '../components/pet/PetForm';
-import { Grid } from 'semantic-ui-react';
+import { Button, Table, Grid, Pagination, Icon, Modal, Container, Card } from 'semantic-ui-react';
+import { Query, Mutation } from 'react-apollo';
+import UserList from '../components/user/UserList'
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag';
 
 const QUERY_LIST_USERS = gql`
   query {
@@ -14,11 +18,19 @@ const QUERY_LIST_USERS = gql`
   }
 `;
 
-const ItemTable = ({item}) => (
+const ItemTable = ({item, openAddPet}) => (
   <Table.Row>
           <Table.Cell>{item.name}</Table.Cell>
           <Table.Cell>{item.cpf || ''}</Table.Cell>
           <Table.Cell>{item.email || ''}</Table.Cell>
+          <Table.Cell>
+            <Button animated onClick={openAddPet(item)}>
+              <Button.Content visible>Next</Button.Content>
+              <Button.Content hidden>
+                <Icon name='right arrow' />
+              </Button.Content>
+            </Button>
+          </Table.Cell>
 </Table.Row>
 );
 
@@ -33,15 +45,12 @@ const UserTable = ({data, openAddPet}) => (
         </Table.Row>
       </Table.Header>
       <Table.Body>
-        {data.map(item => (<ItemTable key={item.id} item={item} />))}
+        {data.map(item => (<ItemTable openAddPet={openAddPet} key={item.id} item={item} />))}
       </Table.Body>
        <Table.Footer fullWidth>
       <Table.Row>
         <Table.HeaderCell />
         <Table.HeaderCell colSpan='4'>
-          <Button floated='right' icon labelPosition='left' onClick={openAddPet('large')} primary size='small'>
-            <Icon name='user' /> Add User
-          </Button>
         </Table.HeaderCell>
       </Table.Row>
     </Table.Footer>
@@ -54,40 +63,52 @@ const ListUsers = ({openAddPet}) => (
       let { loading, error, data} = obj
         if (loading) return "Loading..."
         if (error) return `Error! ${error.message}`
-        return (<UserTable openAddUser={openAddUser} data={data.getUsers} />);
+        return (<UserTable openAddPet={openAddPet} data={data.getUsers} />);
       }
     }
   </Query>
 );
 
 
-
-const PetPage = props => (
-  <div className='addPetForm'>
-    <Grid
-      textAlign='center'
-      style={{ height: '100%' }}
-      verticalAlign='middle'
-    >
-
-    </Grid>
-  </div>
-
-);
+const SAVE_PET = gql`
+mutation createPet(
+  $nome: String!,
+  $especie: String,
+  $cor: String,
+  $raca: String,
+  $sexo: String,
+  $peso: Float,
+  $nascimento: String,
+  $criado: String,
+  $ativo: Boolean,
+  $comportamento: [String],
+  $observacoes: String,
+  $usuario: UserInput!
+) {
+  createPet(nome: $nome, especie: $especie, cor: $cor, raca: $raca,
+    sexo: $sexo, peso: $peso, nascimento: $nascimento, criado: $criado, ativo: $ativo,
+    peso: $peso, nascimento: $nascimento, criado: $criado, ativo: $ativo, comportamento: $comportamento,
+    observacoes: $observacoes, usuario: $usuario) {
+      nome,
+      cor,
+      raca,
+      sexo,
+      usuario
+    }
+}
+`;
 
 
 const ModalForm = ({open, size, onClose, user}) => (
 
-     // <Mutation
-     //          mutation={SAVE_PET}
-     //          update={updatePetList}>
-     //      {(createUser => (
-     //        <Modal size='small' open={open} onClose={onClose}>
-     //           <UserForm createUser={createUser}/>
-     //        </Modal>
-     //      ))}
-     //
-     //    </Mutation>
+     <Mutation mutation={SAVE_PET}>
+          {(createPet => (
+            <Modal size='small' open={open} onClose={onClose}>
+               <PetForm createPet={createPet} user={user} />
+            </Modal>
+          ))}
+
+      </Mutation>
 );
 
 
@@ -100,13 +121,13 @@ class PetPage extends React.Component {
 
 
   render() {
-    const { open, size } = this.state
+    const { open, size, user } = this.state
     return (
       <span>
         {/*Adicionar o filtro*/}
         {/*<h2>Lista de Usuarios</h2>*/}
         <ListUsers openAddPet={(size, user) => this.show(size, user)}/>
-        <ModalForm open={open} size={size} onClose={this.close} />
+        <ModalForm open={open} size={size} onClose={this.close} user={user} />
       </span>
     );
   }

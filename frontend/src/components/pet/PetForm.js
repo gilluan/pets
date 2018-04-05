@@ -14,7 +14,57 @@ const InnerForm = props => (
         <FormikInput
           fluid
           placeholder='Nome do pet'
-          name='nomePet'
+          name='nome'
+        />
+        <FormikInput
+          fluid
+          placeholder='Especie Pet'
+          name='especie'
+        />
+        <FormikInput
+          fluid
+          placeholder='Cor'
+          name='cor'
+        />
+        <FormikInput
+          fluid
+          placeholder='Raça'
+          name='raca'
+        />
+        <FormikInput
+          fluid
+          placeholder='Sexo'
+          name='sexo'
+        />
+        <FormikInput
+          fluid
+          placeholder='Peso'
+          name='peso'
+        />
+        <FormikInput
+          fluid
+          placeholder='Nascimento'
+          name='nascimento'
+        />
+        <FormikInput
+          fluid
+          placeholder='Criado'
+          name='criado'
+        />
+        <FormikInput
+          fluid
+          placeholder='Ativo'
+          name='ativo'
+        />
+        <FormikInput
+          fluid
+          placeholder='Comportamento'
+          name='comportamento'
+        />
+        <FormikInput
+          fluid
+          placeholder='Observacoes'
+          name='observacoes'
         />
       </Card.Content>
       <Card.Content extra>
@@ -26,21 +76,16 @@ const InnerForm = props => (
 
 )
 
-const UserForm = withFormik({
-  mapPropsToValues: props => ({ email: '', password: '', name: '', cpf: '', rg: '', sexo: '', telefone: '' }),
+const PetForm = withFormik({
+  mapPropsToValues: props => ({ nome: '', especie: '', cor: '', raca: '', sexo: '', peso: '', nascimento: '', criado: '', ativo: '', comportamento: '', observacoes: '' }),
   validationSchema: Yup.object().shape({
-    password: Yup.string()
-      .required('Password is required!'),
-    email: Yup.string()
-      .email('Invalid email address')
-      .required('Email is required!'),
-    name: Yup.string().required('Name is required!'),
-    cpf: Yup.string().required('CPF is required')
+    nome: Yup.string()
+      .required('Nome is required!')
   }),
   handleSubmit: async (values, { props, resetForm }) => {
-    await props.createUser({ variables: { ...values } })
+    await props.createPet({ variables: { ...values, usuario: props.user } })
     resetForm()
   }
 })(InnerForm)
 
-export default UserForm
+export default PetForm;
