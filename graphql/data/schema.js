@@ -41,6 +41,7 @@ const typeDefs = `
   }
   
   type Pet {
+    id: ID
     nome: String,
     especie: String,
     cor: String,
