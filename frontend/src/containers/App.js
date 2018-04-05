@@ -15,15 +15,15 @@ const App = props => {
     <div>
       <Menu fixed="top" inverted>
             <Container>
-            <Menu.Item name='home' active={false} onClick={this.handleItemClick} >
-              <Link to="/login">Login</Link>
-              </Menu.Item>
-              <Menu.Item name='messages' active={true} onClick={this.handleItemClick}>
-              <Link to="/users">Usuários</Link>
-              </Menu.Item>
-              <Menu.Item name='friends' active={false} onClick={this.handleItemClick}>
-              <Link to="/pets">Pets</Link>
-              </Menu.Item>
+                <Menu.Item name='home' onClick={this.handleItemClick} >
+                  <Link to="/users">Home</Link>
+                </Menu.Item>
+                <Menu.Item name='messages' onClick={this.handleItemClick}>
+                  <Link to="/users">Usuários</Link>
+                </Menu.Item>
+                <Menu.Item name='friends' onClick={this.handleItemClick}>
+                  <Link to="/pets">Pets</Link>
+                </Menu.Item>
               </Container>
             </Menu>
       <Switch>

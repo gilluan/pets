@@ -40,9 +40,9 @@ const UserTable = ({data, openAddUser}) => (
           <Table.HeaderCell>E-mail address</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
-      <Table.Body>   
+      <Table.Body>
         {data.map(item => (<ItemTable key={item.id} item={item} />))}
-      </Table.Body>   
+      </Table.Body>
        <Table.Footer fullWidth>
       <Table.Row>
         <Table.HeaderCell />
@@ -100,18 +100,18 @@ const updateUsersList = (cache, { data: { createUser } }) => {
 
 
 const ModalForm = ({open, size, onClose}) => (
-   
+
      <Mutation
               mutation={SAVE_USER}
-              update={updateUsersList}> 
+              update={updateUsersList}>
           {(createUser => (
             <Modal size='small' open={open} onClose={onClose}>
                <UserForm createUser={createUser}/>
             </Modal>
           ))}
-          
+
         </Mutation>
-)
+);
 
 class UserListPage extends React.Component {
 
@@ -124,7 +124,7 @@ class UserListPage extends React.Component {
   render() {
     const { open, size } = this.state
     return (
-      <span>        
+      <span>
         {/*Adicionar o filtro*/}
         {/*<h2>Lista de Usuarios</h2>*/}
         <ListUsers openAddUser={(size) => this.show(size)}/>
