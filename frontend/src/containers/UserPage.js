@@ -25,11 +25,6 @@ mutation signup(
 
 const redirectLogin = (props) => {
   props.history.replace('/login')
-    // const { getUsers } = cache.readQuery({ query: QUERY_LIST_USERS }) || [];
-    // cache.writeQuery({
-    //   query: QUERY_LIST_USERS,
-    //   data: {getUsers: [...getUsers, createUser] }
-    // });
 }
 
 
