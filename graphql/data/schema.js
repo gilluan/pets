@@ -17,6 +17,7 @@ const typeDefs = `
     sexo: String
     rg: String
     telefones: [String!]
+    endereco: Endereco
   }
 
   input UserInput {
@@ -53,7 +54,7 @@ const typeDefs = `
     ativo: Boolean,
     comportamento: [String],
     observacoes: String,
-    usuario: User!
+    idUsuario: ID
   }
 
   type AuthPayload {
@@ -93,7 +94,7 @@ const typeDefs = `
     ): User
     
     editUser(
-      id: ID,
+      id: ID!,
       email: String!,
       password: String!,
       name: String!,
@@ -106,7 +107,7 @@ const typeDefs = `
     ): User
     
     removeUser(
-      id: ID
+      id: ID!
     ): String
 
     createPet(
@@ -121,7 +122,7 @@ const typeDefs = `
       ativo: Boolean,
       comportamento: [String],
       observacoes: String,
-      usuario: UserInput!
+      idUsuario: ID!
     ): Pet
     
     editPet(

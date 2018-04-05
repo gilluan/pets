@@ -34,7 +34,8 @@
     ]
   },
   "scripts": {
-    "start": "nodemon ./server.js --exec babel-node"
+    "start": "nodemon ./server.js --exec babel-node",
+    "dev": "nodemon ./server.js --exec babel-node --env dev"
   },
   "author": "gilluan",
   "license": "MIT"
