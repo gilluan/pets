@@ -1,6 +1,7 @@
 import Mongoose from 'mongoose'
 
 Mongoose.Promise = global.Promise
+Mongoose.set('debug', true)
 
 const mongo = Mongoose.connect('mongodb://localhost/pet', {
   useMongoClient: true

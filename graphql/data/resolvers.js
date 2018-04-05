@@ -55,10 +55,11 @@ const resolvers = {
     },
     async editUser (parent, args, context, info) {
       console.log(JSON.stringify(args))
-      let user = await User.findOneAndUpdate({ _id: args.id }, args,
-        (err) => {
-          console.log(err)
-        })
+      let user = await User.findByIdAndUpdate(args.id, args, {new: true}).exec((err, doc) => {
+        if (err) {
+          console.error(err)
+        }
+      })
       return { user }
     },
     async removeUser (parent, args, context, info) {
@@ -73,7 +74,11 @@ const resolvers = {
       return pet
     },
     async editPet (parent, args, context, info) {
-      let pet = await Pet.findOneAndUpdate({ _id: args.id }, args)
+      let pet = await Pet.findByIdAndUpdate(args.id, args, {new: true}).exec((err, doc) => {
+        if (err) {
+          console.error(err)
+        }
+      })
       return { pet }
     },
     async removePet (parent, args, context, info) {
