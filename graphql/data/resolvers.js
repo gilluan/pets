@@ -4,6 +4,9 @@ import jwt from 'jsonwebtoken'
 import { isAuthenticatedResolver } from './authenticatedResolver'
 
 const resolvers = {
+
+  // isAuthenticatedResolver.createResolver(
+
   Query: {
     // ========== Queries User ========================================================================
 
@@ -25,7 +28,7 @@ const resolvers = {
     getPetsByUser: async (parent, { id }, context, info) => {
       return await Pet.find({ 'usuario._id': id })
     }
-    // isAuthenticatedResolver.createResolver(
+
   },
   Mutation: {
 
