@@ -34,8 +34,8 @@ class UserListPage extends React.Component {
       <span>
         {/*Adicionar o filtro*/}
         {/*<h2>Lista de Usuarios</h2>*/}
-        <ListUsers openAddUser={(size) => this.show(size)}/>
-        <UserModalForm open={open} size={size} onClose={this.close}/>
+        {/*<ListUsers openAddUser={(size) => this.show(size)}/>
+        <UserModalForm open={open} size={size} onClose={this.close}/>*/}
       </span>
     );
   }

@@ -1,7 +1,18 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import UserTable from './UserTable';
-import QUERY_LIST_USERS from '/.UserQueries';
+import { gql } from 'graphql-tag';
+
+const QUERY_LIST_USERS = gql`
+  query {
+    getUsers {
+      name
+      id
+      email
+      cpf
+    }
+  }
+`;
 
 const ListUsers = ({openAddUser}) => (
   <Query query={QUERY_LIST_USERS}>
