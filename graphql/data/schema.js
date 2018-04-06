@@ -2,7 +2,6 @@ import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools'
 import resolvers from './resolvers'
 import { merge } from 'lodash'
 import DateTime from './scalars/DateTime'
-import Date from './scalars/Date'
 
 const typeDefs = `
   scalar DateTimeScalar
@@ -18,18 +17,6 @@ const typeDefs = `
     rg: String
     telefones: [String!]
     endereco: Endereco
-  }
-
-  input UserInput {
-    id: ID
-    email: String
-    name: String
-    password: String
-    nascimento: String
-    cpf: String
-    sexo: String
-    rg: String
-    telefones: [String!]
   }
 
   type Endereco {
@@ -57,6 +44,41 @@ const typeDefs = `
     idUsuario: ID
   }
 
+  type Consulta {
+    id: ID
+    timestamp: String
+    idPet: ID
+  }
+  
+  type Plano {
+    nome: String
+    descricao: String
+    procedimentoPlanos: [ID]
+  }
+  
+  type Procedimento {
+    nome: String,
+    descricao: String,
+    tipo: String
+  }
+  
+  type ProcedimentoPlano {
+    valorCusto: Float,
+    valorVenda: Float,
+    qtd: Int,
+    carencia: Int,
+    intervaloDias: Int,
+    idProcedimento:  ID
+  }
+  
+  type Clinica {
+    nome: String,
+    cnpj: String,
+    admins:  [ID],
+    funcionarios:  [ID],
+    planos:  [ID]
+  }
+
   type AuthPayload {
     token: String
     user: User
@@ -68,6 +90,11 @@ const typeDefs = `
     getPets: [Pet!]!
     getPet(id : String): Pet
     getPetsByUser(id: String) : [Pet]
+    getConsultas: [Consulta]
+    getClinicas: [Clinica]
+    getPlanos: [Plano]
+    getProcedimentos: [Procedimento]
+    getProcedimentoPlanos: [ProcedimentoPlano]
   }
 
   type Mutation {
@@ -134,12 +161,12 @@ const typeDefs = `
       ativo: Boolean,
       comportamento: [String],
       observacoes: String,
-      usuario: UserInput
+      idUsuario: ID!
     ): Pet
     
     removePet(
       id: ID
-    ): String    
+    ): String
   }
 `
 

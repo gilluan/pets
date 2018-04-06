@@ -1,12 +1,12 @@
-import { createResolver } from 'apollo-resolvers';
-import { createError, isInstance } from 'apollo-errors';
+import { createResolver } from 'apollo-resolvers'
+import { createError, isInstance } from 'apollo-errors'
 
 const UnknownError = createError('UnknownError', {
   message: 'An unknown error has occurred!  Please try again later'
-});
+})
 
 export const baseResolver = createResolver(
-   //incoming requests will pass through this resolver like a no-op
+   // incoming requests will pass through this resolver like a no-op
   null,
 
   /*
@@ -14,4 +14,4 @@ export const baseResolver = createResolver(
     such as ORM errors etc
   */
   (root, args, context, error) => isInstance(error) ? error : new UnknownError()
-);
+)

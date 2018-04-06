@@ -63,9 +63,22 @@ const ConsultaSchema = Mongoose.Schema({
 const PlanoSchema = Mongoose.Schema({
   nome: String,
   descricao: String,
-  admins: [Schema.Types.ObjectId],
-  funcionarios: [Schema.Types.ObjectId],
-  planos: [Schema.Types.ObjectId]
+  procedimentoPlanos: [Schema.Types.ObjectId]
+})
+
+const ProcedimentoSchema = Mongoose.Schema({
+  nome: String,
+  descricao: String,
+  tipo: String
+})
+
+const ProcedimentoPlanoSchema = Mongoose.Schema({
+  valorCusto: Number,
+  valorVenda: Number,
+  qtd: Number,
+  carencia: Number,
+  intervaloDias: Number,
+  idProcedimento: [Schema.Types.ObjectId]
 })
 
 const ClinicaSchema = Mongoose.Schema({
@@ -81,5 +94,8 @@ const Endereco = Mongoose.model('Endereco', EnderecoSchema)
 const Pet = Mongoose.model('Pet', PetSchema)
 const Consulta = Mongoose.model('Consulta', ConsultaSchema)
 const Clinica = Mongoose.model('Clinica', ClinicaSchema)
+const Plano = Mongoose.model('Plano', PlanoSchema)
+const Procedimento = Mongoose.model('Procedimento', ProcedimentoSchema)
+const ProcedimentoPlano = Mongoose.model('ProcedimentoPlano', ProcedimentoPlanoSchema)
 
-export { User, Endereco, Pet, Consulta }
+export { User, Endereco, Pet, Consulta, Clinica, Plano, Procedimento, ProcedimentoPlano }
