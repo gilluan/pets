@@ -60,7 +60,7 @@ const resolvers = {
           console.error(err)
         }
       })
-      return { user }
+      return user
     },
     async removeUser (parent, args, context, info) {
       await User.remove({ _id: args.id })
@@ -79,7 +79,7 @@ const resolvers = {
           console.error(err)
         }
       })
-      return { pet }
+      return pet
     },
     async removePet (parent, args, context, info) {
       await Pet.remove({ _id: args.id })
