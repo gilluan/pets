@@ -11,15 +11,13 @@ import Yup from 'yup'
 import { Button, Table, Grid, Pagination, Icon, Modal, Container, Card } from 'semantic-ui-react'
 import FormikForm from '../shared/FormikForm'
 import UserForm from '../components/user/UserForm';
+import ListUsers from '../components/user/ListUsers';
+import UserModalForm from '../components/user/UserModalForm';
 import { 
+
+
   UserItemTable, 
-  UserTable, 
-  ListUsers, 
-  UserModalForm } from '../components/user/index';
-
-
-
-
+  UserTable,   } from '../components/user/index';
 class UserListPage extends React.Component {
 
   //TODO
@@ -34,8 +32,8 @@ class UserListPage extends React.Component {
       <span>
         {/*Adicionar o filtro*/}
         {/*<h2>Lista de Usuarios</h2>*/}
-        {/*<ListUsers openAddUser={(size) => this.show(size)}/>
-        <UserModalForm open={open} size={size} onClose={this.close}/>*/}
+        <ListUsers openAddUser={(size) => this.show(size)}/>
+        <UserModalForm open={open} size='medium' onClose={this.close}/>
       </span>
     );
   }

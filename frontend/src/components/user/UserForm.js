@@ -85,4 +85,4 @@ const UserForm = withFormik({
   }
 })(InnerForm)
 
-export default UserForm
+export { UserForm }

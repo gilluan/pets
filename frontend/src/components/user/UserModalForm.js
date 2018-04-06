@@ -1,11 +1,8 @@
 import React from 'react'
 import { Mutation } from 'react-apollo';
-import UserForm from './UserForm';
-
 import { Modal } from 'semantic-ui-react';
-
-
-import { gql } from 'graphql-tag'
+import { gql } from 'apollo-boost'
+import { UserForm} from './UserForm';
 
 const QUERY_LIST_USERS = gql`
   query {
@@ -39,7 +36,6 @@ const SAVE_USER = gql`
       }
     }
 `
-
 
 const updateUsersList = (cache, { data: { createUser } }) => {
     const { getUsers } = cache.readQuery({ query: QUERY_LIST_USERS}) || [];

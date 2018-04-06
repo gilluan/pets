@@ -1,7 +1,8 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import UserTable from './UserTable';
-import { gql } from 'graphql-tag';
+import { gql } from 'apollo-boost'
+
 
 const QUERY_LIST_USERS = gql`
   query {

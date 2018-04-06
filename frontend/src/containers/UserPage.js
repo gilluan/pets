@@ -1,9 +1,9 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-import UserForm from '../components/user/UserForm'
+import { UserForm } from '../components/user/UserForm'
 import { ApolloClient } from 'apollo-client'
 import { graphql } from 'react-apollo'
-import gql from 'graphql-tag'
+import { gql } from 'apollo-boost'
 import { Grid } from 'semantic-ui-react'
 import { Mutation } from 'react-apollo'
 
