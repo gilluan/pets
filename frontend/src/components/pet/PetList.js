@@ -1,22 +1,28 @@
 import React from 'react';
+import { Query } from 'react-apollo';
 import { List } from 'semantic-ui-react';
+import gql from 'graphql-tag';
+import PetsTable from './PetsTable';
 
-let UserList = props => {
-  let { users } = props;
-  let userMappedToList = users.map(u => (
-    <List.Item>
-      <List.Content>
-        <List.Header as='a'>{u.name}</List.Header>
-        <List.Description>{u.email} - {u.sexo}</List.Description>
-      </List.Content>
-    </List.Item>
-  ));
-  return (
-    <List>
-      <h2>LLLL</h2>
-      {userMappedToList}
-    </List>
+let QUERY_PETS_LIST = gql`
+  query getPetsByUser($id: String!) {
+    getPetsByUser(id: $id) {
+      id
+      name
+    }
+  }
+`;
+
+let PetList = ({id}) => (
+  <Query query={QUERY_PETS_LIST} variables={{ id }}>
+    {(obj) => {
+        let { loading, error, data } = obj;
+        if (loading) return "Loading...";
+        if (error) return `Error! ${error.message}`;
+        return (<PetsTable data={data.getPetsByUser} />);
+      }
+    }
+  </Query>
 );
-};
 
-export default UserList;
+export default PetList;

@@ -9,6 +9,7 @@ import { Menu } from 'semantic-ui-react'
 import { Container } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import PetPage from './PetPage';
+import UserPetsListPage from './UserPetsListPage';
 
 const App = props => {
   const { dispatch } = props
@@ -30,6 +31,7 @@ const App = props => {
       <Switch>
         <PrivateRoute path="/users" component={UserListPage} />
         <PrivateRoute path="/pets" component={PetPage} />
+        <PrivateRoute path="/users/:id/pets" component={UserPetsListPage} />
       </Switch>
     </div>
   )

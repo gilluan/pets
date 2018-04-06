@@ -83,7 +83,8 @@ const PetForm = withFormik({
       .required('Nome is required!')
   }),
   handleSubmit: async (values, { props, resetForm }) => {
-    await props.createPet({ variables: { ...values, usuario: props.user } })
+    console.log('ID_USU', props.user);
+    await props.createPet({ variables: { ...values, idUsuario: props.user.id } })
     resetForm()
   }
 })(InnerForm)

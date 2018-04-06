@@ -6,6 +6,7 @@ import { Query, Mutation } from 'react-apollo';
 import UserList from '../components/user/UserList'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag';
+import { Redirect } from 'react-router';
 
 const QUERY_LIST_USERS = gql`
   query {
@@ -83,25 +84,24 @@ mutation createPet(
   $ativo: Boolean,
   $comportamento: [String],
   $observacoes: String,
-  $usuario: UserInput!
+  $idUsuario: ID!
 ) {
   createPet(nome: $nome, especie: $especie, cor: $cor, raca: $raca,
     sexo: $sexo, peso: $peso, nascimento: $nascimento, criado: $criado, ativo: $ativo,
-    peso: $peso, nascimento: $nascimento, criado: $criado, ativo: $ativo, comportamento: $comportamento,
-    observacoes: $observacoes, usuario: $usuario) {
-      nome,
-      cor,
-      raca,
-      sexo,
-      usuario
+   comportamento: $comportamento, observacoes: $observacoes, idUsuario: $idUsuario) {
+      nome
     }
 }
 `;
 
+const redirectPets = (user, history) => history.push(`/users/${user.id}/pets`);
 
-const ModalForm = ({open, size, onClose, user}) => (
+const ModalForm = ({open, size, onClose, user, history}) => (
 
-     <Mutation mutation={SAVE_PET}>
+     <Mutation
+      mutation={SAVE_PET}
+      update={() => redirectPets(user, history)}
+     >
           {(createPet => (
             <Modal size='small' open={open} onClose={onClose}>
                <PetForm createPet={createPet} user={user} />
@@ -116,18 +116,19 @@ class PetPage extends React.Component {
 
   //TODO
   state = { open: false, size: 'medium' }
-  show = (size, user) => () => this.setState({ size, open: true, user })
+  show = (user) => () => this.setState({ user, open: true })
   close = () => this.setState({ open: false })
 
 
   render() {
     const { open, size, user } = this.state
+    const history = this.props.history;
     return (
       <span>
         {/*Adicionar o filtro*/}
         {/*<h2>Lista de Usuarios</h2>*/}
-        <ListUsers openAddPet={(size, user) => this.show(size, user)}/>
-        <ModalForm open={open} size={size} onClose={this.close} user={user} />
+        <ListUsers openAddPet={(user) => this.show(user)}/>
+        <ModalForm open={open} size={size} onClose={this.close} user={user} history={history} />
       </span>
     );
   }
