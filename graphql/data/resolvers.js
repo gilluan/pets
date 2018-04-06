@@ -35,15 +35,27 @@ const resolvers = {
       return await Consulta.find()
     },
 
+    getConsultasByPet: async (parent, args, context, info) => {
+      return await Consulta.find()
+    },
+
     // ========== Queries Clinicas ======================================================================
 
     getClinicas: async (parent, args, context, info) => {
       return await Clinica.find()
     },
 
+    getClinicasByUser: async (parent, args, context, info) => {
+      return await Clinica.find()
+    },
+
     // ========== Queries Planos ========================================================================
 
     getPlanos: async (parent, args, context, info) => {
+      return await Plano.find()
+    },
+
+    getPlanosByClinica: async (parent, args, context, info) => {
       return await Plano.find()
     },
 
@@ -56,6 +68,10 @@ const resolvers = {
     // ========== Queries Procedimento Planos ========================================================================
 
     getProcedimentoPlanos: async (parent, args, context, info) => {
+      return await ProcedimentoPlano.find()
+    },
+
+    getProcedimentoPlanosByPlano: async (parent, args, context, info) => {
       return await ProcedimentoPlano.find()
     }
 
@@ -87,7 +103,6 @@ const resolvers = {
       return user
     },
     async editUser (parent, args, context, info) {
-      console.log(JSON.stringify(args))
       let user = await User.findByIdAndUpdate(args.id, args, { new: true }).exec((err, doc) => {
         if (err) {
           console.error(err)
@@ -103,9 +118,15 @@ const resolvers = {
     // ========== Mutations Pets ========================================================================
     async createPet (parent, args, context, info) {
       args.criado = new Date().toString()
-      let pet = await new Pet(args).save()
+      let pet = await new Pet(args).save((err, doc) => {
+        if (err) {
+          console.error(err)
+        }
+      })
+      pet = Pet.findById(pet._id).populate('usuario')
       return pet
     },
+
     async editPet (parent, args, context, info) {
       let pet = await Pet.findByIdAndUpdate(args.id, args, { new: true }).exec((err, doc) => {
         if (err) {
@@ -114,6 +135,7 @@ const resolvers = {
       })
       return pet
     },
+
     async removePet (parent, args, context, info) {
       await Pet.remove({ _id: args.id })
       return { message: 'removed' }
