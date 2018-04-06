@@ -1,13 +1,13 @@
 
 mutation{
   createPet (
-    nome: "Pet teste 1"
-    especie: "Cão"
+    nome: "Pet teste 6"
+    especie: "Gato"
     cor: "Preto"
     sexo: "Indefinido"
     peso: 1.2
     observacoes: "Obs teste"
-    idUsuario: "5ac50f46691da66eabede49b"
+    usuario: "5ac50f46691da66eabede49b"
 ) {
     nome
     especie
@@ -52,5 +52,12 @@ mutation{
     id
     nome
     observacoes
+  }
+}
+
+
+query{
+  getPetsByUser(id: "5ac50f46691da66eabede49b") {
+     id
   }
 }

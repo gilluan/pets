@@ -28,7 +28,8 @@ const UserSchema = Mongoose.Schema({
   sexo: String,
   nascimento: String,
   rg: String,
-  telefones: [String]
+  telefones: [String],
+  endereco: { type: Schema.Types.ObjectId, ref: 'Endereco' }
 })
 
 const EnderecoSchema = Mongoose.Schema({
@@ -52,18 +53,18 @@ const PetSchema = Mongoose.Schema({
   ativo: Boolean,
   comportamento: [String],
   observacoes: String,
-  idUsuario: Schema.Types.ObjectId
+  usuario: { type: Schema.Types.ObjectId, ref: 'User' }
 })
 
 const ConsultaSchema = Mongoose.Schema({
   timestamp: String,
-  idPet: Schema.Types.ObjectId
+  pet: { type: Schema.Types.ObjectId, ref: 'Pet' }
 })
 
 const PlanoSchema = Mongoose.Schema({
   nome: String,
   descricao: String,
-  procedimentoPlanos: [Schema.Types.ObjectId]
+  procedimentoPlanos: [{ type: Schema.Types.ObjectId, ref: 'ProcedimentoPlano' }]
 })
 
 const ProcedimentoSchema = Mongoose.Schema({
@@ -78,15 +79,15 @@ const ProcedimentoPlanoSchema = Mongoose.Schema({
   qtd: Number,
   carencia: Number,
   intervaloDias: Number,
-  idProcedimento: [Schema.Types.ObjectId]
+  procedimento: [{ type: Schema.Types.ObjectId, ref: 'Procedimento' }]
 })
 
 const ClinicaSchema = Mongoose.Schema({
   nome: String,
   cnpj: String,
-  admins: [Schema.Types.ObjectId],
-  funcionarios: [Schema.Types.ObjectId],
-  planos: [Schema.Types.ObjectId]
+  admins: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  funcionarios: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  planos: [{ type: Schema.Types.ObjectId, ref: 'Plano' }]
 })
 
 const User = Mongoose.model('User', UserSchema)

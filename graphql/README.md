@@ -8,10 +8,15 @@
 - getPet(id: String): Pet
 - getPetsByUser(id: String): [Pet]
 - getConsultas: [Consulta]
+- getConsultasByPet: [Consulta]
 - getClinicas: [Clinica]
+- getClinicasByUser: [Clinica]
 - getPlanos: [Plano]
+- getPlanosByClinica: [Plano]
 - getProcedimentos: [Procedimento]
 - getProcedimentoPlanos: [ProcedimentoPlano]
+- getProcedimentoPlanosByPlano: [ProcedimentoPlano]
+
 
 # Mutations
 

@@ -41,19 +41,19 @@ const typeDefs = `
     ativo: Boolean,
     comportamento: [String],
     observacoes: String,
-    idUsuario: ID
+    usuario: User
   }
 
   type Consulta {
     id: ID
     timestamp: String
-    idPet: ID
+    pet : Pet
   }
   
   type Plano {
     nome: String
     descricao: String
-    procedimentoPlanos: [ID]
+    procedimentoPlanos: [ProcedimentoPlano]
   }
   
   type Procedimento {
@@ -68,15 +68,15 @@ const typeDefs = `
     qtd: Int,
     carencia: Int,
     intervaloDias: Int,
-    idProcedimento:  ID
+    procedimento:  Procedimento
   }
   
   type Clinica {
     nome: String,
     cnpj: String,
-    admins:  [ID],
-    funcionarios:  [ID],
-    planos:  [ID]
+    admins:  [User],
+    funcionarios:  [User],
+    planos:  [Plano]
   }
 
   type AuthPayload {
@@ -91,10 +91,14 @@ const typeDefs = `
     getPet(id : String): Pet
     getPetsByUser(id: String) : [Pet]
     getConsultas: [Consulta]
+    getConsultasByPet: [Consulta]
     getClinicas: [Clinica]
+    getClinicasByUser: [Clinica]
     getPlanos: [Plano]
+    getPlanosByClinica: [Plano]
     getProcedimentos: [Procedimento]
     getProcedimentoPlanos: [ProcedimentoPlano]
+    getProcedimentoPlanosByPlano: [ProcedimentoPlano]
   }
 
   type Mutation {
@@ -149,7 +153,7 @@ const typeDefs = `
       ativo: Boolean,
       comportamento: [String],
       observacoes: String,
-      idUsuario: ID!
+      usuario: ID!
     ): Pet
     
     editPet(
