@@ -1,6 +1,7 @@
 import React from "react";
 import { Form, Message, Card } from "semantic-ui-react";
 
+
 const FormikForm = ({ ...props }) => (
   <Card style={{ width: "100%" }}>
     <Form {...props} onSubmit={e => props.handleSubmit(e)} />

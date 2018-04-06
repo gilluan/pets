@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom';
 import PetForm from '../components/pet/PetForm';
 import { Button, Table, Grid, Pagination, Icon, Modal, Container, Card } from 'semantic-ui-react';
 import { Query, Mutation } from 'react-apollo';
-import UserList from '../components/user/UserList'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag';
 import { Redirect } from 'react-router';

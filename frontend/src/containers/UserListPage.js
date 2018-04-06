@@ -1,5 +1,5 @@
 import React from 'react'
-import UserList from '../components/user/UserList'
+
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import { connect } from "react-redux"
@@ -14,10 +14,10 @@ import UserForm from '../components/user/UserForm';
 import ListUsers from '../components/user/ListUsers';
 import UserModalForm from '../components/user/UserModalForm';
 import { 
+    UserItemTable, 
+    UserTable
+   } from '../components/user/index';
 
-
-  UserItemTable, 
-  UserTable,   } from '../components/user/index';
 class UserListPage extends React.Component {
 
   //TODO
