@@ -7,6 +7,11 @@ getUsers: [User!]!
 getPets: [Pet!]!
 getPet(id: String): Pet
 getPetsByUser(id: String): [Pet]
+getConsultas: [Consulta]
+getClinicas: [Clinica]
+getPlanos: [Plano]
+getProcedimentos: [Procedimento]
+getProcedimentoPlanos: [ProcedimentoPlano]
 
 # Mutations
 

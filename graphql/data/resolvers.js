@@ -1,4 +1,4 @@
-import { User, Pet } from './connectors'
+import { User, Endereco, Pet, Consulta, Clinica, Plano, Procedimento, ProcedimentoPlano } from './connectors'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { isAuthenticatedResolver } from './authenticatedResolver'
@@ -27,6 +27,36 @@ const resolvers = {
     }),
     getPetsByUser: async (parent, { id }, context, info) => {
       return await Pet.find({ 'usuario._id': id })
+    },
+
+    // ========== Queries Consultas =====================================================================
+
+    getConsultas: async (parent, args, context, info) => {
+      return await Consulta.find()
+    },
+
+    // ========== Queries Clinicas ======================================================================
+
+    getClinicas: async (parent, args, context, info) => {
+      return await Clinica.find()
+    },
+
+    // ========== Queries Planos ========================================================================
+
+    getPlanos: async (parent, args, context, info) => {
+      return await Plano.find()
+    },
+
+    // ========== Queries Procedimentos ========================================================================
+
+    getProcedimentos: async (parent, args, context, info) => {
+      return await Procedimento.find()
+    },
+
+    // ========== Queries Procedimento Planos ========================================================================
+
+    getProcedimentoPlanos: async (parent, args, context, info) => {
+      return await ProcedimentoPlano.find()
     }
 
   },
@@ -58,7 +88,7 @@ const resolvers = {
     },
     async editUser (parent, args, context, info) {
       console.log(JSON.stringify(args))
-      let user = await User.findByIdAndUpdate(args.id, args, {new: true}).exec((err, doc) => {
+      let user = await User.findByIdAndUpdate(args.id, args, { new: true }).exec((err, doc) => {
         if (err) {
           console.error(err)
         }
@@ -77,7 +107,7 @@ const resolvers = {
       return pet
     },
     async editPet (parent, args, context, info) {
-      let pet = await Pet.findByIdAndUpdate(args.id, args, {new: true}).exec((err, doc) => {
+      let pet = await Pet.findByIdAndUpdate(args.id, args, { new: true }).exec((err, doc) => {
         if (err) {
           console.error(err)
         }
