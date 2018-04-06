@@ -29,12 +29,17 @@ class UserListPage extends React.Component {
   render() {
     const { open, size } = this.state
     return (
-      <span>
-        {/*Adicionar o filtro*/}
-        {/*<h2>Lista de Usuarios</h2>*/}
-        <ListUsers openAddUser={(size) => this.show(size)}/>
-        <UserModalForm open={open} size='medium' onClose={this.close}/>
-      </span>
+        <Card fluid>
+          <Card.Content>
+            <Card.Header>
+              Cadastro de Usuários
+            </Card.Header>
+          </Card.Content>
+          <Card.Content>
+            <ListUsers openAddUser={(size) => this.show(size)}/>
+            <UserModalForm open={open} size='medium' onClose={this.close}/>
+          </Card.Content>
+        </Card>
     );
   }
 }

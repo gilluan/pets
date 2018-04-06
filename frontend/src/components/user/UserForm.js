@@ -1,88 +1,84 @@
-import React from 'react'
-import { withFormik } from 'formik'
-import Yup from 'yup'
-import FormikInput from '../../shared/FormikInput'
-import FormikForm from '../../shared/FormikForm'
-import { Button, Modal, Card } from 'semantic-ui-react'
+import React from "react";
+import { withFormik } from "formik";
+import Yup from "yup";
+import FormikInput from "../../shared/FormikInput";
+import FormikForm from "../../shared/FormikForm";
+import { Button, Modal, Card, Form, Input, Message } from "semantic-ui-react";
 
 const options = [
-  { key: 'm', text: 'Male', value: 'male' },
-  { key: 'f', text: 'Female', value: 'female' }
-]
+  { key: "m", text: "Male", value: "male" },
+  { key: "f", text: "Female", value: "female" }
+];
 
 const InnerForm = props => (
-  <FormikForm onSubmit={props.handleSubmit}>
-
-    <Card style={{width: '100%'}}>
-                <Card.Content header='Cadastro de Usuário' />
-                <Card.Content description='teste'>
-    <FormikInput
-      fluid
-      placeholder='Email'
-      name="email"
-     />
-        <FormikInput
-          fluid
-          placeholder='Password'
-          type='password'
-          name='password'
-     />
-        <FormikInput
-          fluid
-          placeholder='Name'
-          name='name'
-    />
-
-    {!props.signup && 
-    (<span>
-      <FormikInput
-      fluid
-      placeholder="CPF"
-      name="cpf"
-      />
-        <FormikInput
-          fluid
-          placeholder='RG'
-          name='rg'
-      />
-        <FormikInput
-          fluid
-          placeholder='Sexo'
-          name='sexo'
-      />
-      <FormikInput
-        fluid
-        placeholder="Telefone"
-        name="telefone"
-      /></span>)
-    }
-    
-                   
-                </Card.Content>
-                <Card.Content extra>
-                  <Button positive icon='checkmark' labelPosition='right' content='Save' type='submit' />
-                </Card.Content>
-              </Card>
-    
+  <FormikForm {...props}>
+    <Card style={{ width: "100%" }}>
+      <Card.Content header="Cadastro de Usuário" />
+      <Card.Content description='teste'>
+        <Form.Group widths="equal">
+          <FormikInput control={Input} fluid placeholder="Email" name="email" />
+        </Form.Group>
+        <Form.Group widths="equal">
+          <FormikInput
+            control={Input}
+            width={16}
+            fluid
+            placeholder="Name"
+            name="name"
+          />
+          <FormikInput
+            fluid
+            control={Input}
+            width={16}
+            placeholder="Password"
+            type="password"
+            name="password"
+          />
+        </Form.Group>
+        {!props.signup && (
+          <Form.Group widths="equal">
+            <FormikInput control={Input} fluid placeholder="CPF" name="cpf" />
+            <FormikInput control={Input} fluid placeholder="RG" name="rg" />
+            <FormikInput control={Input} fluid placeholder="Sexo" name="sexo" />
+            <FormikInput control={Input} fluid placeholder="Telefone" name="telefone" />
+          </Form.Group>
+        )}
+      </Card.Content>
+      <Card.Content extra>
+        <Button
+          positive
+          icon="checkmark"
+          labelPosition="right"
+          content="Save"
+          type="submit"
+        />
+      </Card.Content>
+    </Card>
   </FormikForm>
-
-)
+);
 
 const UserForm = withFormik({
-  mapPropsToValues: props => ({email: '', password: '', name: '', cpf: '', rg: '', sexo: '', telefone: ''}),
+  mapPropsToValues: props => ({
+    email: "",
+    password: "",
+    name: "",
+    cpf: "",
+    rg: "",
+    sexo: "",
+    telefone: ""
+  }),
   validationSchema: Yup.object().shape({
-    password: Yup.string()
-      .required('Password is required!'),
+    password: Yup.string().required("O Password é obrigatório!"),
     email: Yup.string()
-      .email('Invalid email address')
-      .required('Email is required!'),
-    name: Yup.string().required('Name is required!'),
+      .email("O Email é inválido")
+      .required("O Email é obrigatório!"),
+    name: Yup.string().required("O Nome é obrigatório!")
     // cpf: !props.signup ? Yup.string().required('CPF is required') : Yup.string()
   }),
   handleSubmit: async (values, { props, resetForm }) => {
-    await props.createUser({variables: {...values}})
-    resetForm()
+    await props.createUser({ variables: { ...values } });
+    resetForm();
   }
-})(InnerForm)
+})(InnerForm);
 
-export { UserForm }
+export { UserForm };

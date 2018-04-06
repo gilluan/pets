@@ -1,8 +1,19 @@
-import React from 'react';
-import { Form } from 'semantic-ui-react'
+import React from "react";
+import { Form, Message, Card } from "semantic-ui-react";
 
-const FormikForm = (props) => (
-    <Form {...props} onSubmit={(e) => props.onSubmit(e)} />
-)
+const FormikForm = ({ ...props }) => (
+  <Card style={{ width: "100%" }}>
+    <Form {...props} onSubmit={e => props.handleSubmit(e)} />
+    {Object.keys(props.touched)[0] && (
+      <Card.Content>
+        <Message
+          error
+          header="Erros"
+          list={Object.keys(props.errors).map(e => props.errors[e])}
+        />
+      </Card.Content>
+    )}
+  </Card>
+);
 
-export default FormikForm
+export default FormikForm;

@@ -9,15 +9,13 @@ const FormikSemanticInput = ({
   form: { touched, errors },
   ...props
 }) => (
-    <Form.Field>
-       <Form.Input 
+    <Form.Field 
       {...field} {...props} error={
         !!touched[field.name] &&
         !!errors[field.name] && 
         !!errors[field.name]
-      }
-      />
-    {touched[field.name] && errors[field.name] && <div>{errors[field.name]}</div>}
+      }>
+      
     </Form.Field>
 );
 
