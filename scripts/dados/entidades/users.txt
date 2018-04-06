@@ -40,6 +40,13 @@ query{
   }
 }
 
+query{
+    getUser(id:"5ac50f46691da66eabede49b") {
+        id
+        name
+    }
+}
+
 mutation{
     editUser(
         id : "5ac50f46691da66eabede49b",

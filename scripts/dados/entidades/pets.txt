@@ -7,18 +7,7 @@ mutation{
     sexo: "Indefinido"
     peso: 1.2
     observacoes: "Obs teste"
-    usuario:  {
-        id: "5ac50f46691da66eabede49b",
-        email: "teste1@teste.com",
-        password: "123456",
-        name: "Teste 1",
-        cpf: "01234567890",
-        sexo: "Indefinido",
-        rg: "12345678",
-        telefones: [
-            "12345678"
-        ]
-    }
+    idUsuario: "5ac50f46691da66eabede49b"
 ) {
     nome
     especie
@@ -33,9 +22,6 @@ mutation{
   }
 }
 
-
-
-
 { // USER
     "_id" : ObjectId("5ac50f46691da66eabede49b")
     "name": "Teste 1",
@@ -49,3 +35,22 @@ mutation{
     ]
 }
 
+query{
+    getPets{
+        id
+        nome
+        observacoes
+    }
+}
+
+mutation{
+  editPet (
+    id: "5ac4f8d983646fe1d9573c70"
+    nome: "Pet teste update 2"
+    observacoes: "Update TESTE"
+  ){
+    id
+    nome
+    observacoes
+  }
+}
