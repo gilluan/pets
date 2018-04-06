@@ -3,66 +3,90 @@ import { withFormik } from 'formik'
 import Yup from 'yup'
 import FormikInput from '../../shared/FormikInput'
 import FormikForm from '../../shared/FormikForm'
-import { Button, Card } from 'semantic-ui-react'
+import { Button, Card, Input, Form } from 'semantic-ui-react'
 
 const InnerForm = props => (
-  <FormikForm onSubmit={props.handleSubmit}>
+  <FormikForm {...props}>
 
     <Card style={{ width: '100%' }}>
       <Card.Content header='Cadastro de Pet' />
       <Card.Content description='teste'>
+        <Form.Group widths="equal">
+          <FormikInput
+            width={16}
+            fluid
+            control={Input}
+            placeholder='Nome do pet'
+            name='nome'
+          />
+          <FormikInput
+            fluid
+            width={16}
+            control={Input}
+            placeholder='Especie Pet'
+            name='especie'
+          />
+        </Form.Group>
+        <Form.Group widths="equal">
+          <FormikInput
+            fluid
+            width={16}
+            control={Input}
+            placeholder='Cor'
+            name='cor'
+          />
+          <FormikInput
+            fluid
+            width={16}
+            control={Input}
+            placeholder='Raça'
+            name='raca'
+          />
+          <FormikInput
+            fluid
+            width={16}
+            control={Input}
+            placeholder='Sexo'
+            name='sexo'
+          />
+        </Form.Group>
+        <Form.Group widths="equal">
+          <FormikInput
+            fluid
+            control={Input}
+            placeholder='Peso'
+            name='peso'
+          />
+          <FormikInput
+            fluid
+            control={Input}
+            placeholder='Nascimento'
+            name='nascimento'
+          />
+          <FormikInput
+            fluid
+            control={Input}
+            placeholder='Criado'
+            name='criado'
+          />
+        </Form.Group>
+        <Form.Group widths="equal">
+          <FormikInput
+            fluid
+            control={Input}
+            placeholder='Ativo'
+            name='ativo'
+          />
+          <FormikInput
+            fluid
+            control={Input}
+            placeholder='Comportamento'
+            name='comportamento'
+          />
+        </Form.Group>
         <FormikInput
           fluid
-          placeholder='Nome do pet'
-          name='nome'
-        />
-        <FormikInput
-          fluid
-          placeholder='Especie Pet'
-          name='especie'
-        />
-        <FormikInput
-          fluid
-          placeholder='Cor'
-          name='cor'
-        />
-        <FormikInput
-          fluid
-          placeholder='Raça'
-          name='raca'
-        />
-        <FormikInput
-          fluid
-          placeholder='Sexo'
-          name='sexo'
-        />
-        <FormikInput
-          fluid
-          placeholder='Peso'
-          name='peso'
-        />
-        <FormikInput
-          fluid
-          placeholder='Nascimento'
-          name='nascimento'
-        />
-        <FormikInput
-          fluid
-          placeholder='Criado'
-          name='criado'
-        />
-        <FormikInput
-          fluid
-          placeholder='Ativo'
-          name='ativo'
-        />
-        <FormikInput
-          fluid
-          placeholder='Comportamento'
-          name='comportamento'
-        />
-        <FormikInput
-          fluid
+          control={Input}
           placeholder='Observacoes'
           name='observacoes'
         />
