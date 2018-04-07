@@ -87,7 +87,7 @@ mutation createPet(
 ) {
   createPet(nome: $nome, especie: $especie, cor: $cor, raca: $raca,
     sexo: $sexo, peso: $peso, nascimento: $nascimento, criado: $criado, ativo: $ativo,
-   comportamento: $comportamento, observacoes: $observacoes, idUsuario: $idUsuario) {
+   comportamento: $comportamento, observacoes: $observacoes, usuario: $idUsuario) {
       nome
     }
 }

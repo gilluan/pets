@@ -89,7 +89,7 @@ const resolvers = {
       return { user, token }
     },
     async login (parent, { email, password }, { SECRET_KEY }, info) {
-      const user = await User.findOne({ email })
+      const user = await User.findOne({ email });
       if (!user) { throw new Error(`Could not find user with email: ${email}`) }
       const valid = await bcrypt.compare(password, user.password)
       if (!valid) { throw new Error('Invalid password') }

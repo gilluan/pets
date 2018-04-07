@@ -16,6 +16,7 @@ let QUERY_PETS_LIST = gql`
 let PetList = ({id}) => (
   <Query query={QUERY_PETS_LIST} variables={{ id }}>
     {(obj) => {
+        console.log('ID', id, 'OBJ', obj);
         let { loading, error, data } = obj;
         if (loading) return "Loading...";
         if (error) return `Error! ${error.message}`;

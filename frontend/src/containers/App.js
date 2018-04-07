@@ -31,7 +31,7 @@ const App = props => {
       <Switch>
         <PrivateRoute path="/users" component={UserListPage} />
         <PrivateRoute path="/pets" component={PetPage} />
-        <PrivateRoute path="/users/:id/pets" component={UserPetsListPage} />
+        <PrivateRoute path="/user/:id/pets" component={UserPetsListPage} />
       </Switch>
     </div>
   )
