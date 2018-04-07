@@ -1,4 +1,5 @@
 if [ "$1" == "prod" ]; 
+then
 	pidsYarn=`ps -ef | grep yarn | cut -d" " -f7`
 	for pid in $pidsYarn
 	do
