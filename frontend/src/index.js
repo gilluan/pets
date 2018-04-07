@@ -12,20 +12,11 @@ import { ApolloLink } from 'apollo-link'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import gql from 'graphql-tag'
 
-const urlAtlas = 'http://167.99.11.98:4000/graphql'
+const urlVPS = 'http://167.99.11.98:4000/graphql'
 const urlLocal = 'http://localhost:4000/graphql'
-let URL_API = ''
-
-process.argv.forEach(arg => {
-  if (arg === 'dev') {
-    URL_API = urlLocal
-  } else {
-    URL_API = urlAtlas
-  }
-})
 
 // TODO: substituir o link por uma variavel de ambiente
-const httpLink = createHttpLink({ uri: URL_API })
+const httpLink = createHttpLink({ uri: urlVPS })
 
 const middlewareLink = new ApolloLink((operation, forward) => {
   const token = localStorage.getItem('userToken')
