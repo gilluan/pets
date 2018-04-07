@@ -26,7 +26,8 @@ const resolvers = {
       return await Pet.findById(id)
     }),
     getPetsByUser: async (parent, { id }, context, info) => {
-      return await Pet.find({ 'usuario._id': id })
+      console.log("ID", id);
+      return await Pet.find({ 'usuario': id })
     },
 
     // ========== Queries Consultas =====================================================================

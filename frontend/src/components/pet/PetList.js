@@ -9,12 +9,14 @@ const QUERY_PETS_LIST = gql`
     getPetsByUser(id: $id) {
       id
       nome
+      raca
+      especie
     }
   }
 `;
 
 const PetList = id => (
-  <Query query={QUERY_PETS_LIST} variables={{ id }}>
+  <Query query={QUERY_PETS_LIST} variables={{ ...id }}>
     {(obj) => {
         let { loading, error, data } = obj;
         if (loading) return "Loading...";
