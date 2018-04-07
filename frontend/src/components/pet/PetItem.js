@@ -3,7 +3,7 @@ import { Table } from 'semantic-ui-react';
 
 const PetItem = ({item}) => (
   <Table.Row>
-    <Table.Cell>{item.name}</Table.Cell>
+    <Table.Cell>{item.nome}</Table.Cell>
   </Table.Row>
 );
 

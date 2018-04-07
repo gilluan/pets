@@ -93,7 +93,7 @@ mutation createPet(
 }
 `;
 
-const redirectPets = (user, history) => history.push(`/users/${user.id}/pets`);
+const redirectPets = (user, history) => history.push(`/user/${user.id}/pets`);
 
 const ModalForm = ({open, size, onClose, user, history}) => (
 

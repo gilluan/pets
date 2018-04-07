@@ -6,9 +6,9 @@ import { Grid } from 'semantic-ui-react';
 class UserPetsListPage extends React.Component {
 
   render() {
-    let userId = this.props.match.id;
+    let userId = this.props.match.params.id;
     return (
-      <div className='addUserForm'>
+      <div className='petsUserList'>
         <Grid
           textAlign='center'
           style={{ height: '100%' }}

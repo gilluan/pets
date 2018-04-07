@@ -112,7 +112,6 @@ const PetForm = withFormik({
     peso: Yup.string().required("O Peso é obrigatório!")
   }),
   handleSubmit: async (values, { props, resetForm }) => {
-    console.log("ID_USU", props.user);
     await props.createPet({
       variables: { ...values, idUsuario: props.user.id }
     });
