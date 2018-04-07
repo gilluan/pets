@@ -3,7 +3,7 @@ import Mongoose, { Schema } from 'mongoose'
 Mongoose.Promise = global.Promise
 Mongoose.set('debug', true)
 
-const urlAtlas = 'mongodb://petapp:PetApp456!@cluster0-shard-00-00-2vm6a.mongodb.net:27017,cluster0-shard-00-01-2vm6a.mongodb.net:27017,cluster0-shard-00-02-2vm6a.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin'
+const urlAtlas = 'mongodb://petapp:PetApp456!@cluster0-shard-00-00-2vm6a.mongodb.net:27017,cluster0-shard-00-01-2vm6a.mongodb.net:27017,cluster0-shard-00-02-2vm6a.mongodb.net:27017/pets?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin'
 const urlLocal = 'mongodb://localhost/pet'
 let url = ''
 

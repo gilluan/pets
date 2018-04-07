@@ -6,6 +6,8 @@ import resolvers from './data/resolvers'
 import cors from 'cors'
 import jwt from 'jsonwebtoken'
 import morgan from 'morgan'
+import fs from 'fs'
+import dateformat from 'dateformat'
 
 const GRAPHQL_PORT = 4000
 
@@ -32,6 +34,9 @@ const addUser = async (req, res, next) => {
 graphQLServer.use(cors())
 
 graphQLServer.use(addUser)
+
+let logFile = fs.createWriteStream('./logs/' + dateformat(new Date(), 'dd-mm-yyyy.HH-mm-ss') + '.log', {flags: 'a'}) // use {flags: 'w'} to open in write mode
+graphQLServer.use(morgan('combined', {stream: logFile}))
 
 graphQLServer.use(
   '/graphql',
