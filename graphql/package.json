@@ -21,7 +21,8 @@
     "sequelize": "^4.28.2",
     "sqlite": "^2.9.0",
     "validator": "^9.4.1",
-    "morgan": "^1.9.0"
+    "morgan": "^1.9.0",
+    "dateformat": "^3.0.3"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
