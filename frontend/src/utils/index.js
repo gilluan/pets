@@ -1,70 +1,67 @@
-import fetch        from 'isomorphic-fetch';
-import moment from "moment";
+import fetch from 'isomorphic-fetch'
+import moment from 'moment'
 
 const URL_API = 'http://localhost:8000'
 
 const defaultHeaders = {
   'Accept': 'application/json',
-  'Content-Type': 'application/json',
-};
-
-function buildHeaders() {
-  const authToken = localStorage.getItem('access_token');
-
-  return { ...defaultHeaders, Authorization: authToken };
+  'Content-Type': 'application/json'
 }
 
-export function parseJSON(response) {
-  return response.json();
+function buildHeaders () {
+  const authToken = localStorage.getItem('access_token')
+
+  return { ...defaultHeaders, Authorization: authToken }
 }
 
-export function httpGet(url) {
+export function parseJSON (response) {
+  return response.json()
+}
 
+export function httpGet (url) {
   return fetch(URL_API + url, {
     headers: buildHeaders()
   })
-  .then(parseJSON);
+  .then(parseJSON)
 }
 
-export function httpPost(url, data) {
-  const body = JSON.stringify(data);
+export function httpPost (url, data) {
+  const body = JSON.stringify(data)
 
   return fetch(URL_API + url, {
     method: 'post',
     headers: buildHeaders(),
-    body: body,
+    body: body
   })
-  .then(parseJSON);
+  .then(parseJSON)
 }
 
-export function httpDelete(url, id) {
-
-  return fetch(`${URL_API}${url}/${id}` , {
+export function httpDelete (url, id) {
+  return fetch(`${URL_API}${url}/${id}`, {
     method: 'delete',
-    headers: buildHeaders(),
+    headers: buildHeaders()
   })
-  .then(parseJSON);
+  .then(parseJSON)
 }
 
 export const isObjectEmpty = (obj) => {
-    return obj && !obj[Object.keys(obj)[0]];
+  return obj && !obj[Object.keys(obj)[0]]
 }
 
 export const getUrlParam = (obj) => {
+  let queryParam = new URLSearchParams()
 
-  let queryParam = new URLSearchParams();
+  if (isObjectEmpty(obj)) return ''
 
-  if(isObjectEmpty(obj)) return "";
-
-  for(let i in obj) {
-      queryParam.append(i, obj[i]);
+  for (let i in obj) {
+    queryParam.append(i, obj[i])
   }
 
   return `query?${queryParam.toString()}`
 }
 
-export function httpPut(url, id, data) {
-  const body = JSON.stringify(data);
+export function httpPut (url, id, data) {
+  const body = JSON.stringify(data)
   return fetch(`${URL_API}/${url}/${id}`, {
     method: 'put',
     headers: buildHeaders(),
@@ -73,10 +70,8 @@ export function httpPut(url, id, data) {
   .then(parseJSON)
 }
 
-export function setDocumentTitle(title) {
-  document.title = `${title} | Time Managment`;
+export function setDocumentTitle (title) {
+  document.title = `${title} | Time Managment`
 }
 
-
-
-export const formatDate = (date) => moment(date).format("DD.MM.YYYY");
+export const formatDate = (date) => moment(date).format('DD.MM.YYYY')
