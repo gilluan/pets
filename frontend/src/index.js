@@ -16,7 +16,8 @@ const urlVPS = 'http://167.99.11.98:4000/graphql'
 const urlLocal = 'http://localhost:4000/graphql'
 
 // TODO: substituir o link por uma variavel de ambiente
-const httpLink = createHttpLink({ uri: urlVPS })
+// const httpLink = createHttpLink({ uri: urlVPS })
+const httpLink = createHttpLink({ uri: urlLocal })
 
 const middlewareLink = new ApolloLink((operation, forward) => {
   const token = localStorage.getItem('userToken')
