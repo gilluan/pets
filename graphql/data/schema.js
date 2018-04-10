@@ -165,7 +165,7 @@ const typeDefs = `
       ativo: Boolean,
       comportamento: [String],
       observacoes: String,
-      idUsuario: ID!
+      usuario: ID!
     ): Pet
     
     removePet(

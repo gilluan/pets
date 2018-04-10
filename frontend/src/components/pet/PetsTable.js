@@ -6,7 +6,11 @@ const PetsTable = ({data}) => (
   <Table striped>
     <Table.Header fullWidth>
       <Table.Row>
-        <Table.HeaderCell>Name</Table.HeaderCell>
+        <Table.HeaderCell>Nome</Table.HeaderCell>
+        <Table.HeaderCell>Raca</Table.HeaderCell>
+        <Table.HeaderCell>Espécie</Table.HeaderCell>
+        <Table.HeaderCell>Editar</Table.HeaderCell>
+        <Table.HeaderCell>Excluir</Table.HeaderCell>
       </Table.Row>
     </Table.Header>
     <Table.Body>
