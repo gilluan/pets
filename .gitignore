@@ -25,3 +25,5 @@ frontend/react/node_modules/
 graphql/.idea/
 
 .vscode/settings.json
+
+graphqq/logs/*.log
