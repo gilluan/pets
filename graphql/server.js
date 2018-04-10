@@ -35,8 +35,8 @@ graphQLServer.use(cors())
 
 graphQLServer.use(addUser)
 
-let logFile = fs.createWriteStream('./logs/' + dateformat(new Date(), 'dd-mm-yyyy.HH-mm-ss') + '.log', {flags: 'a'}) // use {flags: 'w'} to open in write mode
-graphQLServer.use(morgan('combined', {stream: logFile}))
+// let logFile = fs.createWriteStream('./logs/' + dateformat(new Date(), 'dd-mm-yyyy.HH-mm-ss') + '.log', {flags: 'a'}) // use {flags: 'w'} to open in write mode
+// graphQLServer.use(morgan('combined', {stream: logFile}))
 
 graphQLServer.use(
   '/graphql',
