@@ -17,11 +17,11 @@ mutation createPet(
   $ativo: Boolean,
   $comportamento: [String],
   $observacoes: String,
-  $idUsuario: ID!
+  $usuario: ID!
 ) {
   createPet(nome: $nome, especie: $especie, cor: $cor, raca: $raca,
     sexo: $sexo, peso: $peso, nascimento: $nascimento, criado: $criado, ativo: $ativo,
-   comportamento: $comportamento, observacoes: $observacoes, usuario: $idUsuario) {
+   comportamento: $comportamento, observacoes: $observacoes, usuario: $usuario) {
       nome
     }
 }
