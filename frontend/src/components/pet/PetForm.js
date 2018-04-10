@@ -100,25 +100,29 @@ const InnerForm = props => (
 
 const PetForm = withFormik({
   mapPropsToValues: props => ({
-    nome: '',
-    especie: '',
-    cor: '',
-    raca: '',
-    sexo: '',
-    peso: '',
-    nascimento: '',
-    comportamento: '',
-    observacoes: ''
+    nome: props.pet.nome || '',
+    especie: props.pet.especie || '',
+    cor: props.pet.cor || '',
+    raca: props.pet.raca || '',
+    sexo: props.pet.sexo || '',
+    peso: props.pet.peso || '',
+    nascimento: props.pet.nascimento || '',
+    comportamento: props.pet.comportamento || '',
+    observacoes: props.pet.observacoes || ''
   }),
   validationSchema: Yup.object().shape({
     nome: Yup.string().required('O Nome é obrigatório!'),
     peso: Yup.string().required('O Peso é obrigatório!')
   }),
   handleSubmit: async (values, { props, resetForm }) => {
-    values.usuario = props.user.id
-    await props.createPet({
-      variables: { ...values }
-    })
+    values.usuario = props.user.id;
+    if (props.pet) {
+      //TODO: ENDPOINT GRAPHQL CREATE OR UPDATE
+    } else {
+      await props.createPet({
+        variables: { ...values }
+      })
+    }
     resetForm()
   }
 })(InnerForm)

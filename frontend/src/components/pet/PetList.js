@@ -15,13 +15,13 @@ const QUERY_PETS_LIST = gql`
   }
 `;
 
-const PetList = id => (
-  <Query query={QUERY_PETS_LIST} variables={{ ...id }}>
+const PetList = ({id, openEditPet}) => (
+  <Query query={QUERY_PETS_LIST} variables={{ id }}>
     {(obj) => {
         let { loading, error, data } = obj;
         if (loading) return "Loading...";
         if (error) return `Error! ${error.message}`;
-        return (<PetsTable data={data.getPetsByUser} />);
+        return (<PetsTable data={data.getPetsByUser} openEditPet={openEditPet} />);
       }
     }
   </Query>

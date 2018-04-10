@@ -2,7 +2,7 @@ import React from 'react';
 import { Table } from 'semantic-ui-react';
 import PetItem from './PetItem';
 
-const PetsTable = ({data}) => (
+const PetsTable = ({ data , openEditPet}) => (
   <Table striped>
     <Table.Header fullWidth>
       <Table.Row>
@@ -14,7 +14,7 @@ const PetsTable = ({data}) => (
       </Table.Row>
     </Table.Header>
     <Table.Body>
-      {data.map(item => (<PetItem key={item.id} item={item} />))}
+      {data.map(item => (<PetItem key={item.id} item={item} openEditPet={openEditPet} />))}
     </Table.Body>
   </Table>
 );

@@ -29,7 +29,7 @@ mutation createPet(
 
 const redirectPets = (user, history) => history.push(`/user/${user.id}/pets`);
 
-const PetModalForm = ({open, size, onClose, user, history}) => (
+const PetModalForm = ({open, size, onClose, user, history, pet}) => (
 
      <Mutation
       mutation={SAVE_PET}
@@ -37,7 +37,7 @@ const PetModalForm = ({open, size, onClose, user, history}) => (
      >
           {(createPet => (
             <Modal size='small' open={open} onClose={onClose}>
-               <PetForm createPet={createPet} user={user} />
+               <PetForm createPet={createPet} user={user} pet={pet} />
             </Modal>
           ))}
 
