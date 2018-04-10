@@ -16,21 +16,19 @@ const _showMenu = () => {
 }
 
 const Root = () => {
-
   
   return (
     <Router>
       <div>
-          
-            <Container style={{marginTop: '7em'}}>
-              <Switch>
-                <Route path="/login" component={LoginPage} />
-                <Route path="/sign-up" component={UserPage} />
-                <PrivateRoute path="/" component={App} />
-              </Switch>
-            </Container>
-        </div>
-      </Router>
+        <Container style={{marginTop: '7em'}}>
+          <Switch>
+            <Route path="/login" component={LoginPage} />
+            <Route path="/sign-up" component={UserPage} />
+            <PrivateRoute path="/" component={App} />
+          </Switch>
+        </Container>
+      </div>
+    </Router>
   );
 };
 
