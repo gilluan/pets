@@ -21,14 +21,14 @@ const ItemTable = ({item, openAddPet, openUserPetsList}) => (
     <Table.Cell>{item.email || ''}</Table.Cell>
     <Table.Cell>
       <Button animated onClick={openAddPet(item)}>
-        <Button.Content visible>Cadatrar</Button.Content>
+        <Button.Content visible>Cadastrar</Button.Content>
         <Button.Content hidden>
           <Icon name='right arrow' />
         </Button.Content>
       </Button>
     </Table.Cell>
     <Table.Cell>
-      <Button animated onClick={openUserPetsList(item)}>
+      <Button animated onClick={() => openUserPetsList(item)}>
         <Button.Content visible>Visualizar</Button.Content>
         <Button.Content hidden>
           <Icon name='right arrow' />
