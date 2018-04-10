@@ -26,7 +26,7 @@ class PetPage extends React.Component {
         <Card.Content>
           {/*Adicionar o filtro*/}
           {/*<h2>Lista de Usuarios</h2>*/}
-          <PetUserList openAddPet={(user) => this.show(user)} openUserPetsList={(user) => {/*redirectPets(user, history)*/}}/>
+          <PetUserList openAddPet={(user) => this.show(user)} openUserPetsList={(user) => redirectPets(user, history)}/>
           <PetModalForm open={open} size={size} onClose={this.close} user={user} history={history} />
         </Card.Content>
       </Card>
