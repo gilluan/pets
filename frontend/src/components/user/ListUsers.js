@@ -1,8 +1,7 @@
-import React from 'react';
-import { Query } from 'react-apollo';
-import UserTable from './UserTable';
+import React from 'react'
+import { Query } from 'react-apollo'
+import UserTable from './UserTable'
 import { gql } from 'apollo-boost'
-
 
 const QUERY_LIST_USERS = gql`
   query {
@@ -13,16 +12,16 @@ const QUERY_LIST_USERS = gql`
       cpf
     }
   }
-`;
+`
 
 const ListUsers = ({openAddUser}) => (
   <Query query={QUERY_LIST_USERS}>
     {(obj) => {
       let { loading, error, data} = obj
-        if (loading) return "Loading..."
-        if (error) return `Error! ${error.message}`
-        return (<UserTable openAddUser={openAddUser} data={data.getUsers} />);
-      }
+      if (loading) return 'Loading...'
+      if (error) return `Error! ${error.message}`
+      return (<UserTable openAddUser={openAddUser} data={data.getUsers} />)
+    }
     }
   </Query>
 )

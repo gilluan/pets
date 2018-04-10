@@ -50,7 +50,12 @@ const InnerForm = props => (
           />
         </Form.Group>
         <Form.Group widths='equal'>
-          <FormikInput fluid control={Input} placeholder='Peso' name='peso' />
+          <FormikInput
+            fluid
+            control={Input}
+            placeholder='Peso'
+            name='peso'
+            labelPosition='right' />
           <FormikInput
             fluid
             control={Input}
@@ -112,7 +117,7 @@ const PetForm = withFormik({
   handleSubmit: async (values, { props, resetForm }) => {
     values.usuario = props.user.id
     await props.createPet({
-      variables: {...values}
+      variables: { ...values }
     })
     resetForm()
   }
