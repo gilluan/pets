@@ -41,7 +41,6 @@ const App = props => {
             <Menu.Item name='friends' onClick={this.handleItemClick}>
               <Link to="/pets">Pets</Link>
             </Menu.Item>
-
           </Menu>
         </Grid.Column>
         <Grid.Column width={12}>
