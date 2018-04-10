@@ -9,8 +9,7 @@ const PetsTable = ({data}) => (
         <Table.HeaderCell>Nome</Table.HeaderCell>
         <Table.HeaderCell>Raca</Table.HeaderCell>
         <Table.HeaderCell>Espécie</Table.HeaderCell>
-        <Table.HeaderCell>Editar</Table.HeaderCell>
-        <Table.HeaderCell>Excluir</Table.HeaderCell>
+        <Table.HeaderCell>Operações</Table.HeaderCell>
       </Table.Row>
     </Table.Header>
     <Table.Body>
