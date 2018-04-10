@@ -8,10 +8,10 @@ const urlLocal = 'mongodb://localhost/pet'
 let url = ''
 
 process.argv.forEach(arg => {
-  if (arg === 'dev') {
-    url = urlLocal
-  } else {
+  if (arg === 'prod') {
     url = urlAtlas
+  } else {
+    url = urlLocal
   }
 })
 

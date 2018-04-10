@@ -100,15 +100,15 @@ const InnerForm = props => (
 
 const PetForm = withFormik({
   mapPropsToValues: props => ({
-    nome: props.pet.nome || '',
-    especie: props.pet.especie || '',
-    cor: props.pet.cor || '',
-    raca: props.pet.raca || '',
-    sexo: props.pet.sexo || '',
-    peso: props.pet.peso || '',
-    nascimento: props.pet.nascimento || '',
-    comportamento: props.pet.comportamento || '',
-    observacoes: props.pet.observacoes || ''
+    nome: (props.pet) ? props.pet.nome || '' : '',
+    especie: (props.pet) ? props.pet.especie || '' : '',
+    cor: (props.pet) ? props.pet.cor || '' : '',
+    raca: (props.pet) ? props.pet.raca || '' : '',
+    sexo: (props.pet) ? props.pet.sexo || '' : '',
+    peso: (props.pet) ? props.pet.peso || '' : '',
+    nascimento: (props.pet) ? props.pet.nascimento || '' : '',
+    comportamento: (props.pet) ? props.pet.comportamento || '' : '',
+    observacoes: (props.pet) ? props.pet.observacoes || '' : ''
   }),
   validationSchema: Yup.object().shape({
     nome: Yup.string().required('O Nome é obrigatório!'),
