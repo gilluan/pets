@@ -32,7 +32,7 @@ const App = props => {
       <Grid columns='equal'>
         <Grid.Column witdh={4} >
           <Menu pointing vertical>
-            <Menu.Item name='home' onClick={this.handleItemClick} activate={true} >
+            <Menu.Item name='home' onClick={this.handleItemClick} active={true} >
               <Link to="/users">Home</Link>
             </Menu.Item>
             <Menu.Item name='messages' onClick={this.handleItemClick}>
