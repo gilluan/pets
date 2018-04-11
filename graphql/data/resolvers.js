@@ -116,24 +116,25 @@ const resolvers = {
     },
 
     // ========== Mutations Pets ========================================================================
-    async createPet (parent, args, context, info) {
-      args.criado = new Date().toString()
-      let pet = await new Pet(args).save((err, doc) => {
-        if (err) {
-          console.error(err)
-        }
-      })
-      pet = Pet.findById(pet._id).populate('usuario')
-      return pet
-    },
 
-    async editPet (parent, args, context, info) {
-      let pet = await Pet.findByIdAndUpdate(args.id, args, { new: true }).exec((err, doc) => {
-        if (err) {
-          console.error(err)
-        }
-      })
-      return pet
+    async createEditPet (parent, args, context, info) {
+      if(args._id){
+        let pet = await Pet.findByIdAndUpdate(args.id, args, { new: true }).exec((err, doc) => {
+          if (err) {
+            console.error(err)
+          }
+        })
+        return pet
+      }else{
+        args.criado = new Date().toString()
+        let pet = await new Pet(args).save((err, doc) => {
+          if (err) {
+            console.error(err)
+          }
+        })
+        pet = Pet.findById(pet._id).populate('usuario')
+        return pet
+      }
     },
 
     async removePet (parent, args, context, info) {
