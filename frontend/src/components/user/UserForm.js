@@ -4,6 +4,7 @@ import Yup from "yup";
 import FormikInput from "../../shared/FormikInput";
 import FormikForm from "../../shared/FormikForm";
 import { Button, Modal, Card, Form, Input, Message } from "semantic-ui-react";
+import FormikSelect from "../../shared/FormikSelect";
 
 const options = [
   { key: "m", text: "Male", value: "male" },
@@ -39,7 +40,7 @@ const InnerForm = props => (
           <Form.Group widths="equal">
             <FormikInput control={Input} fluid placeholder="CPF" name="cpf" />
             <FormikInput control={Input} fluid placeholder="RG" name="rg" />
-            <FormikInput control={Input} fluid placeholder="Sexo" name="sexo" />
+            <FormikSelect fluid placeholder="Sexo" name="sexo" options={options} />
             <FormikInput control={Input} fluid placeholder="Telefone" name="telefone" />
           </Form.Group>
         )}
@@ -72,7 +73,8 @@ const UserForm = withFormik({
     email: Yup.string()
       .email("O Email é inválido")
       .required("O Email é obrigatório!"),
-    name: Yup.string().required("O Nome é obrigatório!")
+    name: Yup.string().required("O Nome é obrigatório!"),
+    sexo: Yup.string().required()
     // cpf: !props.signup ? Yup.string().required('CPF is required') : Yup.string()
   }),
   handleSubmit: async (values, { props, resetForm }) => {

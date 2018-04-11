@@ -24,7 +24,10 @@ const FormikSemanticSelect = ({
   }
 
   return (
-    <Form.Field>
+    <Form.Field error={
+      !!touched[name] &&
+      !!errors[name] && 
+      !!errors[name]}>
       <Select
         {...props}
         name={name}
@@ -33,7 +36,6 @@ const FormikSemanticSelect = ({
         onChange={handleChange}
         onBlur={setFieldTouched}
       />
-      {touched[name] && errors[name] && <div>{errors[name]}</div>}
     </Form.Field>
   )
 }
