@@ -141,7 +141,8 @@ const typeDefs = `
       id: ID!
     ): String
 
-    createPet(
+    createEditPet(
+      id: ID,
       nome: String!,
       especie: String,
       cor: String,
@@ -150,18 +151,6 @@ const typeDefs = `
       peso: Float,
       nascimento: String,
       criado: String,
-      ativo: Boolean,
-      comportamento: [String],
-      observacoes: String,
-      usuario: ID!
-    ): Pet
-    
-    editPet(
-      id: ID
-      nome: String,
-      cor: String,
-      sexo: String,
-      peso: Float,
       ativo: Boolean,
       comportamento: [String],
       observacoes: String,
