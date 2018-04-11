@@ -139,7 +139,77 @@ const resolvers = {
     async removePet (parent, args, context, info) {
       await Pet.remove({ _id: args.id })
       return { message: 'removed' }
+    },
+
+    async createEditPlano (parent, args, context, info) {
+      if (args.id) {
+        let plano = await Plano.findByIdAndUpdate(args.id, args, { new: true }).exec((err, doc) => {
+          if (err) {
+            console.error(err)
+          }
+        })
+        return plano
+      } else {
+        let plano = await Plano.save((err, doc) => {
+          if (err) {
+            console.error(err)
+          }
+        })
+        return plano
+      }
+    },
+
+    async removePlano (parent, args, context, info) {
+      await Plano.remove({ _id: args.id })
+      return { message: 'removed' }
+    },
+
+    async createEditConsulta (parent, args, context, info) {
+      if (args.id) {
+        let consulta = await Consulta.findByIdAndUpdate(args.id, args, { new: true }).exec((err, doc) => {
+          if (err) {
+            console.error(err)
+          }
+        })
+        return consulta
+      } else {
+        let consulta = await Consulta.save((err, doc) => {
+          if (err) {
+            console.error(err)
+          }
+        })
+        return consulta
+      }
+    },
+
+    async removeConsulta (parent, args, context, info) {
+      await Consulta.remove({ _id: args.id })
+      return { message: 'removed' }
+    },
+
+    async createEditClinica (parent, args, context, info) {
+      if (args.id) {
+        let clinica = await Clinica.findByIdAndUpdate(args.id, args, { new: true }).exec((err, doc) => {
+          if (err) {
+            console.error(err)
+          }
+        })
+        return clinica
+      } else {
+        let clinica = await Clinica.save((err, doc) => {
+          if (err) {
+            console.error(err)
+          }
+        })
+        return clinica
+      }
+    },
+
+    async removeClinica (parent, args, context, info) {
+      await Plano.remove({ _id: args.id })
+      return { message: 'removed' }
     }
+
   }
 }
 

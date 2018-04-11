@@ -58,6 +58,10 @@ const PetSchema = Mongoose.Schema({
 
 const ConsultaSchema = Mongoose.Schema({
   timestamp: String,
+  diagnostico: String,
+  receita: String,
+  procedimentoPlanos: [{ type: Schema.Types.ObjectId, ref: 'ProcedimentoPlano' }],
+  atendente: { type: Schema.Types.ObjectId, ref: 'User' },
   pet: { type: Schema.Types.ObjectId, ref: 'Pet' }
 })
 

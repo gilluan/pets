@@ -45,9 +45,13 @@ const typeDefs = `
   }
 
   type Consulta {
-    id: ID
+    id : ID
     timestamp: String
-    pet : Pet
+    diagnostico: String
+    receita: String
+    procedimentoPlanos: [ID]
+    atendente: ID
+    pet : ID!
   }
   
   type Plano {
@@ -169,6 +173,45 @@ const typeDefs = `
     ): Pet
     
     removePet(
+      id: ID
+    ): String
+
+    createEditPlano(
+      id: ID
+      nome: String
+      descricao: String
+      procedimentoPlanos: [ID]
+    ): Plano
+    
+    
+    removePlano(
+      id: ID
+    ): String
+
+    createEditConsulta(
+      id: ID
+      timestamp: String
+      diagnostico: String
+      receita: String
+      procedimentoPlanos: [ID]
+      atendente: ID
+      pet : ID!
+    ): Consulta
+    
+    removeConsulta(
+      id: ID
+    ): String
+
+    createEditClinica(
+      id: ID
+      nome: String
+      cnpj: String
+      admins:  [ID]
+      funcionarios:  [ID]
+      planos:  [ID]
+    ): Clinica
+    
+    removeClinica(
       id: ID
     ): String
   }
