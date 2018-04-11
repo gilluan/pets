@@ -34,13 +34,9 @@ const App = props => {
       <Grid columns='equal'>
         <Grid.Column witdh={4} >
           <Menu pointing vertical>
-            <Menu.Item name='home' onClick={this.handleItemClick} active={true} >
-              <NavLink activeClassName="active" to="/">Home</NavLink>
-            </Menu.Item>
-            <Menu.Item name='usuários' ctiveClassName="active" to="/users" onClick={this.handleItemClick}>
-            </Menu.Item>
-            <Menu.Item name='pets' as={NavLink} activeClassName="active" to="/pets" onClick={this.handleItemClick}>
-            </Menu.Item>
+            <Menu.Item as={NavLink} activeClassName="active" exact to="/" name='home' onClick={this.handleItemClick} />
+            <Menu.Item name='usuários' as={NavLink} activeClassName="active" to="/users" onClick={this.handleItemClick} />
+            <Menu.Item name='pets' as={NavLink} activeClassName="active" to="/pets" onClick={this.handleItemClick} />
           </Menu>
         </Grid.Column>
         <Grid.Column width={12}>
