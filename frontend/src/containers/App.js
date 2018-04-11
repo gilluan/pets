@@ -6,9 +6,11 @@ import Switch from "react-router-dom/Switch";
 import { connect } from "react-redux";
 import PrivateRoute from '../components/PrivateRoute';
 import { Container, Grid, Rail, Sticky, Segment, Checkbox, Menu, Button, Input } from 'semantic-ui-react'
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import PetPage from './PetPage';
 import UserPetsListPage from './UserPetsListPage';
+
+
 
 const App = props => {
   const { dispatch } = props
@@ -33,13 +35,11 @@ const App = props => {
         <Grid.Column witdh={4} >
           <Menu pointing vertical>
             <Menu.Item name='home' onClick={this.handleItemClick} active={true} >
-              <Link to="/users">Home</Link>
+              <NavLink activeClassName="active" to="/">Home</NavLink>
             </Menu.Item>
-            <Menu.Item name='messages' onClick={this.handleItemClick}>
-              <Link to="/users">Usuários</Link>
+            <Menu.Item name='usuários' ctiveClassName="active" to="/users" onClick={this.handleItemClick}>
             </Menu.Item>
-            <Menu.Item name='friends' onClick={this.handleItemClick}>
-              <Link to="/pets">Pets</Link>
+            <Menu.Item name='pets' as={NavLink} activeClassName="active" to="/pets" onClick={this.handleItemClick}>
             </Menu.Item>
           </Menu>
         </Grid.Column>
