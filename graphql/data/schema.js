@@ -208,6 +208,18 @@ const typeDefs = `
     removeClinica(
       id: ID
     ): String
+
+    createEditProcedimento(
+      id: ID,
+      nome: String,
+	    descricao: String,
+	    tipo: String
+    ): Procedimento
+    
+    removeProcedimento(
+      id: ID
+    ): String
+
   }
 `
 

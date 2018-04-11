@@ -229,6 +229,29 @@ const resolvers = {
     async removeClinica (parent, args, context, info) {
       await Plano.remove({ _id: args.id })
       return { message: 'removed' }
+    },
+
+    async createEditProcedimento (parent, args, context, info) { 
+      if (args._id) { 
+        let procedimento = await Procedimento.findByIdAndUpdate(args.id, args, { new: true }).exec((err, doc) => { 
+          if (err) { 
+            console.error(err) 
+          } 
+        }) 
+        return procedimento 
+      } else { 
+        let procedimento = await Procedimento.save((err, doc) => { 
+          if (err) { 
+            console.error(err) 
+          } 
+        }) 
+        return procedimento 
+      } 
+    }, 
+ 
+    async removeProcedimento (parent, args, context, info) { 
+      await Procedimento.remove({ _id: args.id }) 
+      return { message: 'removed' } 
     }
 
   }
