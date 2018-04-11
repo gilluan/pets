@@ -94,13 +94,18 @@ const typeDefs = `
     getPets: [Pet!]!
     getPet(id : String): Pet
     getPetsByUser(id: String) : [Pet]
+    getConsulta(id: String): Consulta
     getConsultas: [Consulta]
     getConsultasByPet: [Consulta]
+    getClinica(id: String): Clinica
     getClinicas: [Clinica]
     getClinicasByUser: [Clinica]
+    getPlano(id: String): Plano
     getPlanos: [Plano]
     getPlanosByClinica: [Plano]
+    getProcedimento(id: String): Procedimento
     getProcedimentos: [Procedimento]
+    getProcedimentoPlano(id: String): ProcedimentoPlano
     getProcedimentoPlanos: [ProcedimentoPlano]
     getProcedimentoPlanosByPlano: [ProcedimentoPlano]
   }

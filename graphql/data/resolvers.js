@@ -13,6 +13,7 @@ const resolvers = {
     getUser: async (parent, { id }, context, info) => {
       return await User.findById(id)
     },
+    
     getUsers: async (parent, args, context, info) => {
       return await User.find()
     },
@@ -31,6 +32,10 @@ const resolvers = {
 
     // ========== Queries Consultas =====================================================================
 
+    getConsulta: async (parent, { id }, context, info) => {
+      return await Consulta.findById(id)
+    },
+
     getConsultas: async (parent, args, context, info) => {
       return await Consulta.find()
     },
@@ -40,6 +45,9 @@ const resolvers = {
     },
 
     // ========== Queries Clinicas ======================================================================
+    getClinica: async (parent, { id }, context, info) => {
+      return await Clinica.findById(id)
+    },
 
     getClinicas: async (parent, args, context, info) => {
       return await Clinica.find()
@@ -51,6 +59,10 @@ const resolvers = {
 
     // ========== Queries Planos ========================================================================
 
+    getPlano: async (parent, { id }, context, info) => {
+      return await Plano.findById(id)
+    },
+
     getPlanos: async (parent, args, context, info) => {
       return await Plano.find()
     },
@@ -61,11 +73,19 @@ const resolvers = {
 
     // ========== Queries Procedimentos ========================================================================
 
+    getProcedimento: async (parent, { id }, context, info) => {
+      return await Procedimento.findById(id)
+    },
+
     getProcedimentos: async (parent, args, context, info) => {
       return await Procedimento.find()
     },
 
     // ========== Queries Procedimento Planos ========================================================================
+
+    getProcedimentoPlano: async (parent, { id }, context, info) => {
+      return await ProcedimentoPlano.findById(id)
+    },
 
     getProcedimentoPlanos: async (parent, args, context, info) => {
       return await ProcedimentoPlano.find()
