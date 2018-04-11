@@ -12,7 +12,9 @@ const FormikSemanticSelect = ({
   onChange,
   ...props
 }) => {
+  
   const handleChange = (event, key, data) => {
+
     setFieldTouched(name, true)
     setFieldValue(name, key.value)
 
