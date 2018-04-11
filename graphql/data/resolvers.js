@@ -118,14 +118,14 @@ const resolvers = {
     // ========== Mutations Pets ========================================================================
 
     async createEditPet (parent, args, context, info) {
-      if(args._id){
+      if (args._id) {
         let pet = await Pet.findByIdAndUpdate(args.id, args, { new: true }).exec((err, doc) => {
           if (err) {
             console.error(err)
           }
         })
         return pet
-      }else{
+      } else {
         args.criado = new Date().toString()
         let pet = await new Pet(args).save((err, doc) => {
           if (err) {
@@ -143,7 +143,7 @@ const resolvers = {
     },
 
     async createEditPlano (parent, args, context, info) {
-      if (args.id) {
+      if (args._id) {
         let plano = await Plano.findByIdAndUpdate(args.id, args, { new: true }).exec((err, doc) => {
           if (err) {
             console.error(err)
@@ -166,7 +166,7 @@ const resolvers = {
     },
 
     async createEditConsulta (parent, args, context, info) {
-      if (args.id) {
+      if (args._id) {
         let consulta = await Consulta.findByIdAndUpdate(args.id, args, { new: true }).exec((err, doc) => {
           if (err) {
             console.error(err)
@@ -189,7 +189,7 @@ const resolvers = {
     },
 
     async createEditClinica (parent, args, context, info) {
-      if (args.id) {
+      if (args._id) {
         let clinica = await Clinica.findByIdAndUpdate(args.id, args, { new: true }).exec((err, doc) => {
           if (err) {
             console.error(err)
