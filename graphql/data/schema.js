@@ -220,6 +220,20 @@ const typeDefs = `
       id: ID
     ): String
 
+    createEditProcedimentoPlano(
+      id: ID,
+      valorCusto: Float,
+      valorVenda: Float,
+      qtd: Int,
+      carencia: Int,
+      intervaloDias: Int,
+      procedimento:  [ID]
+    ): ProcedimentoPlano
+    
+    removeProcedimentoPlano(
+      id: ID
+    ): String
+
   }
 `
 

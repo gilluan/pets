@@ -252,6 +252,29 @@ const resolvers = {
     async removeProcedimento (parent, args, context, info) { 
       await Procedimento.remove({ _id: args.id }) 
       return { message: 'removed' } 
+    },
+
+    async createEditProcedimentoPlano (parent, args, context, info) { 
+      if (args._id) { 
+        let procedimentoPlano = await procedimentoPlano.findByIdAndUpdate(args.id, args, { new: true }).exec((err, doc) => { 
+          if (err) { 
+            console.error(err) 
+          } 
+        }) 
+        return procedimentoPlano 
+      } else { 
+        let procedimentoPlano = await procedimentoPlano.save((err, doc) => { 
+          if (err) { 
+            console.error(err) 
+          } 
+        }) 
+        return procedimentoPlano 
+      } 
+    }, 
+ 
+    async removeProcedimentoPlano (parent, args, context, info) { 
+      await ProcedimentoPlano.remove({ _id: args.id }) 
+      return { message: 'removed' } 
     }
 
   }
