@@ -117,12 +117,11 @@ const PetForm = withFormik({
   handleSubmit: async (values, { props, resetForm }) => {
     values.usuario = props.user.id;
     if (props.pet) {
-      //TODO: ENDPOINT GRAPHQL CREATE OR UPDATE
-    } else {
-      await props.createPet({
-        variables: { ...values }
-      })
+      values.id = props.pet.id || undefined;
     }
+    await props.createEditPet({
+      variables: { ...values }
+    })
     resetForm()
   }
 })(InnerForm)

@@ -5,7 +5,8 @@ import { gql } from 'apollo-boost'
 import  PetForm  from './PetForm';
 
 const SAVE_PET = gql`
-mutation createPet(
+mutation createEditPet(
+  $id: ID
   $nome: String!,
   $especie: String,
   $cor: String,
@@ -19,7 +20,7 @@ mutation createPet(
   $observacoes: String,
   $usuario: ID!
 ) {
-  createPet(nome: $nome, especie: $especie, cor: $cor, raca: $raca,
+  createEditPet(id: $id, nome: $nome, especie: $especie, cor: $cor, raca: $raca,
     sexo: $sexo, peso: $peso, nascimento: $nascimento, criado: $criado, ativo: $ativo,
    comportamento: $comportamento, observacoes: $observacoes, usuario: $usuario) {
       nome
@@ -35,9 +36,9 @@ const PetModalForm = ({open, size, onClose, user, history, pet}) => (
       mutation={SAVE_PET}
       update={() => redirectPets(user, history)}
      >
-          {(createPet => (
+          {(createEditPet => (
             <Modal size='small' open={open} onClose={onClose}>
-               <PetForm createPet={createPet} user={user} pet={pet} />
+               <PetForm createEditPet={createEditPet} user={user} pet={pet} />
             </Modal>
           ))}
 
